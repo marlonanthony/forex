@@ -17,6 +17,6 @@ server.applyMiddleware({ app })
 
 const PORT = 4000
 
-app.listen({ port: PORT }, () => {
+app.listen(PORT, () => {
   console.log(`🚀 Server ready at http://localhost:4000${server.graphqlPath}`)
 })

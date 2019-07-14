@@ -3,6 +3,7 @@ const { gql } = require('apollo-server-express')
 const typeDefs = gql`
   type Query {
     currencyPairInfo(fc: String, tc: String): PairDisplay!
+    monthlyTimeSeries(fc: String, tc: String): TimeSeries!
   }
 
   type PairDisplay {
@@ -15,6 +16,11 @@ const typeDefs = gql`
     timeZone: String
     bidPrice: String
     askPrice: String
+  }
+
+  type TimeSeries {
+    timesArray: [String!]!
+    valuesArray: [String!]!
   }
 `
 
