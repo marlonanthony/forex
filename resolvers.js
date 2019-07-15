@@ -33,6 +33,10 @@ const resolvers = {
         return user 
       } catch (error) { throw error }
     },
+    logout: async (_, __, { req }) => {
+      try { req.session.destroy(() => false) } 
+      catch (error) { throw error }
+    },
   }
 }
 

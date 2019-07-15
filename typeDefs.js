@@ -4,12 +4,13 @@ const typeDefs = gql`
   type Query {
     currencyPairInfo(fc: String, tc: String): PairDisplay!
     monthlyTimeSeries(fc: String, tc: String): TimeSeries!
-    me: User
+    me: User!
   }
 
   type Mutation {
     register(email: String!, password: String!, name: String!): Boolean!
     login(email: String!, password: String!): User
+    logout: Boolean
   }
 
   type PairDisplay {

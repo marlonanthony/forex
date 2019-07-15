@@ -40,9 +40,11 @@ class UserAPI extends DataSource {
   }
 
   async getMe({ req }) {
-    if(!req.session.userId) return null 
-    const user = await User.findById(req.session.userId).populate('pairs') 
-    return user 
+    try {
+      if(!req.session.userId) return null 
+      const user = await User.findById(req.session.userId).populate('pairs') 
+      return user 
+    } catch (error) { throw error }
   }
 }
 
