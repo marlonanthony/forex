@@ -10,10 +10,6 @@ class UserAPI extends DataSource {
     super()
   }
 
-  // initialize(config) {
-  //   this.context = config.context
-  // }
-
   async createNewUser({ email, password, name }) {
     try {
       if(!isEmail.validate(email)) { throw new UserInputError('Invalide Email') }
@@ -27,6 +23,18 @@ class UserAPI extends DataSource {
       })
       await user.save()
       return true 
+    } catch (error) { throw error }
+  }
+
+  async loginUser({ email, password, req }) {
+    try {
+      if (!isEmail.validate(email)) { throw new UserInputError('Invalide Email') }
+      const user = await User.findOne({ email }) 
+      if(!user) { throw new UserInputError('Email or password is incorrect!') }
+      const isEqual = await bcrypt.compare(password, user.password)
+      if(!isEqual) { throw new UserInputError('Email or password is incorrect!') }
+      req.session.userId = user.id 
+      return user 
     } catch (error) { throw error }
   }
 }

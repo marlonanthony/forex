@@ -21,6 +21,12 @@ const resolvers = {
         return newUser
       } catch (error) { throw error }
     },
+    login: async (_, { email, password }, { dataSources, req }) => {
+      try {
+        const user = await dataSources.userAPI.loginUser({ email, password, req })
+        return user 
+      } catch (error) { throw error }
+    },
   }
 }
 

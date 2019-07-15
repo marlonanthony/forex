@@ -1,12 +1,13 @@
 const app = require('express')()
 const { ApolloServer } = require('apollo-server-express')
 const mongoose = require('mongoose')
+const session = require('express-session')
 
 const typeDefs = require('./typeDefs')
 const resolvers = require('./resolvers') 
 const CurrencyAPI = require('./datasources/currencies')
 const UserAPI = require('./datasources/user')
-const { mongoPassword } = require('./config/keys')
+const { mongoPassword, secret } = require('./config/keys')
 
 const server = new ApolloServer({ 
   typeDefs,
@@ -14,10 +15,23 @@ const server = new ApolloServer({
   dataSources: () => ({
     currencyAPI: new CurrencyAPI(),
     userAPI: new UserAPI()
-  })
+  }),
+  context: ({ req }) => ({ req })
 })
 
-server.applyMiddleware({ app })
+app.use(session({
+  secret,
+  resave: false,
+  saveUninitialized: false
+}))
+
+server.applyMiddleware({ 
+  app, 
+  cors: {
+      credentials: true,
+      origin: 'http://localhost:3000'
+  }
+})
 
 mongoose
 .connect(`mongodb+srv://marlon:${mongoPassword}@cluster0-o028g.mongodb.net/forex?retryWrites=true&w=majority`, { useNewUrlParser: true })
