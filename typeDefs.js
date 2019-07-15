@@ -6,6 +6,10 @@ const typeDefs = gql`
     monthlyTimeSeries(fc: String, tc: String): TimeSeries!
   }
 
+  type Mutation {
+    register(email: String!, password: String!, name: String!): Boolean!
+  }
+
   type PairDisplay {
     fromCurrency: String!
     fromCurrencyName: String
@@ -21,6 +25,31 @@ const typeDefs = gql`
   type TimeSeries {
     timesArray: [String!]!
     valuesArray: [String!]!
+  }
+
+  type User {
+    id: ID!
+    email: String!
+    name: String!
+    bankroll: Float!
+    pairs: [Pair]
+    createdAt: String!
+    updatedAt: String 
+  }
+
+  type Pair {
+    id: ID!
+    user: ID!
+    pair: String!
+    lotSize: Int!
+    position: String!
+    openedAt: Float!
+    closedAt: Float
+    pipDif: Float
+    profitLoss: Float
+    open: Boolean!
+    createdAt: String!
+    updatedAt: String!
   }
 `
 

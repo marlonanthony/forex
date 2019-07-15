@@ -5,13 +5,15 @@ const mongoose = require('mongoose')
 const typeDefs = require('./typeDefs')
 const resolvers = require('./resolvers') 
 const CurrencyAPI = require('./datasources/currencies')
+const UserAPI = require('./datasources/user')
 const { mongoPassword } = require('./config/keys')
 
 const server = new ApolloServer({ 
   typeDefs,
   resolvers,
   dataSources: () => ({
-    currencyAPI: new CurrencyAPI() 
+    currencyAPI: new CurrencyAPI(),
+    userAPI: new UserAPI()
   })
 })
 

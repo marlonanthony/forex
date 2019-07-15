@@ -12,6 +12,15 @@ const resolvers = {
         return timeSeries
       } catch (error) { throw error }
     }
+  },
+
+  Mutation: {
+    register: async (_, { email, password, name }, { dataSources }) => {
+      try {
+        const newUser = await dataSources.userAPI.createNewUser({ email, password, name })
+        return newUser
+      } catch (error) { throw error }
+    },
   }
 }
 
