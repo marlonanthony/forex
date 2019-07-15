@@ -11,7 +11,13 @@ const resolvers = {
         const timeSeries = await dataSources.currencyAPI.getMonthlyTimeSeries(fc, tc)
         return timeSeries
       } catch (error) { throw error }
-    }
+    },
+    me: async (_, __, { dataSources, req }) => {
+      try {
+        const user = await dataSources.userAPI.getMe({ req })
+        return user
+      } catch (error) { throw error }
+    },
   },
 
   Mutation: {

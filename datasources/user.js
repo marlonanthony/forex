@@ -4,6 +4,7 @@ const isEmail = require('isemail')
 const bcrypt = require('bcryptjs')
 
 const User = require('../models/User') 
+const Pair = require('../models/Pair')
 
 class UserAPI extends DataSource {
   constructor() {
@@ -36,6 +37,12 @@ class UserAPI extends DataSource {
       req.session.userId = user.id 
       return user 
     } catch (error) { throw error }
+  }
+
+  async getMe({ req }) {
+    if(!req.session.userId) return null 
+    const user = await User.findById(req.session.userId).populate('pairs') 
+    return user 
   }
 }
 
