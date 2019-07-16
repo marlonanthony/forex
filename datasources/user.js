@@ -1,5 +1,5 @@
 const { DataSource } = require('apollo-datasource')
-const { UserInputError } = require('apollo-server-express')
+const { UserInputError, AuthenticationError, ForbiddenError } = require('apollo-server-express')
 const isEmail = require('isemail')
 const bcrypt = require('bcryptjs')
 
@@ -42,7 +42,7 @@ class UserAPI extends DataSource {
   async getMe({ req }) {
     try {
       if(!req.session.userId) return null 
-      const user = await User.findById(req.session.userId).populate('pairs') 
+      const user = await User.findById(req.session.userId).populate('pairs')
       return user 
     } catch (error) { throw error }
   }
@@ -50,8 +50,8 @@ class UserAPI extends DataSource {
   async newPosition({ pair, lotSize, openedAt, position, req }) {
     try {
       const user = await User.findById(req.session.userId)
-      if(!user) throw new Error(`User doesn't exist.`)
-      if(user.bankroll < lotSize) throw new Error(`You don't have enough for this transaction.`)
+      if(!user) throw new AuthenticationError('Invalide Credentials!')
+      if(user.bankroll < lotSize) throw new ForbiddenError('Insufficient funds!')
       
       const newPair = new Pair({
         pair,
@@ -73,9 +73,12 @@ class UserAPI extends DataSource {
 
   async exitPosition({ id, closedAt, req }) {
     try {
+      const user = await User.findById(req.session.userId)
+      if(!user) throw new AuthenticationError('Invalide credentials!')
+
       const pair = await Pair.findById(id) 
       if(!pair) throw new Error('Pair not found')
-      if(!pair.open) throw new Error('Transaction already complete!')
+      if(!pair.open) throw new ForbiddenError('Transaction already complete!')
       let pipDifFloat
       pair.position === 'long' 
         ? pipDifFloat = (closedAt - pair.openedAt).toFixed(4) 
@@ -85,7 +88,7 @@ class UserAPI extends DataSource {
       pair.profitLoss = pipDifFloat * pair.lotSize
       pair.open = false 
       const savedPair = await pair.save()
-      const user = await User.findById(req.session.userId) 
+
       user.bankroll += (pair.lotSize + savedPair.profitLoss) 
       await user.save() 
 
@@ -94,6 +97,26 @@ class UserAPI extends DataSource {
       return { success, message, pair: savedPair }
     }
     catch (error) { throw error }
+  }
+
+  async getPair({ id, req }) {
+    try {
+      const user = await User.findById(req.session.userId)
+      if(!user) throw new AuthenticationError('Invalid credentials')
+      const pair = await Pair.findById(id)
+      if(!pair || pair.user.toString() !== user.id.toString()) { 
+        throw new AuthenticationError('Invalid credentials!') 
+      } 
+      return pair
+    } catch (error) { throw error }
+  }
+  
+  async findPairs({ req }) {
+    try {
+      const pairs = await Pair.find({ user: req.session.userId })
+      if(!pairs.length) throw new Error('Nothing to show!')
+      return [...pairs] 
+    } catch (error) { throw error }
   }
 }
 

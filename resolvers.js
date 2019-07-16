@@ -18,6 +18,18 @@ const resolvers = {
         return user
       } catch (error) { throw error }
     },
+    findPair: async (_, { id }, { dataSources, req }) => {
+      try {
+        const foundPair = await dataSources.userAPI.getPair({ id, req })
+        return foundPair
+      } catch (error) { throw error }
+    },
+    getPairs: async (_, __, { dataSources, req }) => {
+      try {
+        const foundPairs = await dataSources.userAPI.findPairs({ req })
+        return [...foundPairs]
+      } catch (error) { throw error }
+    },
   },
 
   Mutation: {

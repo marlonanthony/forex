@@ -5,6 +5,8 @@ const typeDefs = gql`
     currencyPairInfo(fc: String, tc: String): PairDisplay!
     monthlyTimeSeries(fc: String, tc: String): TimeSeries!
     me: User!
+    findPair(id: ID!): Pair!
+    getPairs: [Pair!]
   }
 
   type Mutation {
