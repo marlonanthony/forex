@@ -46,6 +46,30 @@ class UserAPI extends DataSource {
       return user 
     } catch (error) { throw error }
   }
+
+  async newPosition({ pair, lotSize, openedAt, position, req }) {
+    try {
+      const user = await User.findById(req.session.userId)
+      if(!user) throw new Error(`User doesn't exist.`)
+      if(user.bankroll < lotSize) throw new Error(`You don't have enough for this transaction.`)
+      
+      const newPair = new Pair({
+        pair,
+        lotSize,
+        openedAt,
+        position,
+        open: true,
+        user: req.session.userId
+      })
+      const pairResult = await newPair.save()
+      user.pairs.unshift(pairResult)
+      user.bankroll -= lotSize
+      await user.save()
+      const message = `Congrats ${user.name}! You've opened a ${position} position on ${pair} at ${openedAt}`
+      const success = true
+      return { success, message, pair: pairResult }
+    } catch (error) { throw error }
+  }
 }
 
 module.exports = UserAPI

@@ -9,8 +9,9 @@ const typeDefs = gql`
 
   type Mutation {
     register(email: String!, password: String!, name: String!): Boolean!
-    login(email: String!, password: String!): User
-    logout: Boolean
+    login(email: String!, password: String!): User!
+    logout: Boolean!
+    openPosition(pair: String!, lotSize: Int, openedAt: Float!, position: String!): PairUpdateResponse!
   }
 
   type PairDisplay {
@@ -53,6 +54,12 @@ const typeDefs = gql`
     open: Boolean!
     createdAt: String!
     updatedAt: String!
+  }
+
+  type PairUpdateResponse {
+    success: Boolean!
+    message: String!
+    pair: Pair!
   }
 `
 
