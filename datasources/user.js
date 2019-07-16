@@ -74,10 +74,10 @@ class UserAPI extends DataSource {
   async exitPosition({ id, closedAt, req }) {
     try {
       const user = await User.findById(req.session.userId)
-      if(!user) throw new AuthenticationError('Invalide credentials!')
+      if(!user) throw new AuthenticationError('Invalid credentials!')
 
       const pair = await Pair.findById(id) 
-      if(!pair) throw new Error('Pair not found')
+      if(!pair) throw new AuthenticationError('Invalid credentials!')
       if(!pair.open) throw new ForbiddenError('Transaction already complete!')
       let pipDifFloat
       pair.position === 'long' 
@@ -114,7 +114,7 @@ class UserAPI extends DataSource {
   async findPairs({ req }) {
     try {
       const pairs = await Pair.find({ user: req.session.userId })
-      if(!pairs.length) throw new Error('Nothing to show!')
+      if(!pairs.length) throw new UserInputError('Nothing to show!')
       return [...pairs] 
     } catch (error) { throw error }
   }
