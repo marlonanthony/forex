@@ -70,6 +70,31 @@ class UserAPI extends DataSource {
       return { success, message, pair: pairResult }
     } catch (error) { throw error }
   }
+
+  async exitPosition({ id, closedAt, req }) {
+    try {
+      const pair = await Pair.findById(id) 
+      if(!pair) throw new Error('Pair not found')
+      if(!pair.open) throw new Error('Transaction already complete!')
+      let pipDifFloat
+      pair.position === 'long' 
+        ? pipDifFloat = (closedAt - pair.openedAt).toFixed(4) 
+        : pipDifFloat = (pair.openedAt - closedAt).toFixed(4)   
+      pair.closedAt = closedAt
+      pair.pipDif = pipDifFloat
+      pair.profitLoss = pipDifFloat * pair.lotSize
+      pair.open = false 
+      const savedPair = await pair.save()
+      const user = await User.findById(req.session.userId) 
+      user.bankroll += (pair.lotSize + savedPair.profitLoss) 
+      await user.save() 
+
+      const success = true 
+      const message = `${savedPair.profitLoss > 0 ? `Congrats! ` : ''}${user.name} you've closed your ${savedPair.position} position on ${savedPair.pair} at ${closedAt}${savedPair.profitLoss > 0 ? '! For a profit of '+Math.round(savedPair.profitLoss) : '! For a loss of '+Math.round(savedPair.profitLoss)}`
+      return { success, message, pair: savedPair }
+    }
+    catch (error) { throw error }
+  }
 }
 
 module.exports = UserAPI
