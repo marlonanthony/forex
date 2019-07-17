@@ -7,8 +7,9 @@ const User = require('../models/User')
 const Pair = require('../models/Pair')
 
 class UserAPI extends DataSource {
-  constructor() {
-    super()
+
+  initialize(config) {
+    this.context = config.context
   }
 
   async createNewUser({ email, password, name }) {
@@ -27,29 +28,29 @@ class UserAPI extends DataSource {
     } catch (error) { throw error }
   }
 
-  async loginUser({ email, password, req }) {
+  async loginUser({ email, password }) {
     try {
       if (!isEmail.validate(email)) { throw new UserInputError('Invalide Email') }
       const user = await User.findOne({ email }) 
       if(!user) { throw new UserInputError('Email or password is incorrect!') }
       const isEqual = await bcrypt.compare(password, user.password)
       if(!isEqual) { throw new UserInputError('Email or password is incorrect!') }
-      req.session.userId = user.id 
+      this.context.req.session.userId = user.id 
       return user 
     } catch (error) { throw error }
   }
 
-  async getMe({ req }) {
+  async getMe() {
     try {
-      if(!req.session.userId) return null 
-      const user = await User.findById(req.session.userId).populate('pairs')
+      if(!this.context.req.session.userId) return null 
+      const user = await User.findById(this.context.req.session.userId).populate('pairs')
       return user 
     } catch (error) { throw error }
   }
 
-  async newPosition({ pair, lotSize, openedAt, position, req }) {
+  async newPosition({ pair, lotSize, openedAt, position }) {
     try {
-      const user = await User.findById(req.session.userId)
+      const user = await User.findById(this.context.req.session.userId)
       if(!user) throw new AuthenticationError('Invalide Credentials!')
       if(user.bankroll < lotSize) throw new ForbiddenError('Insufficient funds!')
       
@@ -59,7 +60,7 @@ class UserAPI extends DataSource {
         openedAt,
         position,
         open: true,
-        user: req.session.userId
+        user: this.context.req.session.userId
       })
       const pairResult = await newPair.save()
       user.pairs.unshift(pairResult)
@@ -71,9 +72,9 @@ class UserAPI extends DataSource {
     } catch (error) { throw error }
   }
 
-  async exitPosition({ id, closedAt, req }) {
+  async exitPosition({ id, closedAt }) {
     try {
-      const user = await User.findById(req.session.userId)
+      const user = await User.findById(this.context.req.session.userId)
       if(!user) throw new AuthenticationError('Invalid credentials!')
 
       const pair = await Pair.findById(id) 
@@ -99,9 +100,9 @@ class UserAPI extends DataSource {
     catch (error) { throw error }
   }
 
-  async getPair({ id, req }) {
+  async getPair({ id }) {
     try {
-      const user = await User.findById(req.session.userId)
+      const user = await User.findById(this.context.req.session.userId)
       if(!user) throw new AuthenticationError('Invalid credentials')
       const pair = await Pair.findById(id)
       if(!pair || pair.user.toString() !== user.id.toString()) { 
@@ -111,11 +112,22 @@ class UserAPI extends DataSource {
     } catch (error) { throw error }
   }
   
-  async findPairs({ req }) {
+  async findPairs() {
     try {
-      const pairs = await Pair.find({ user: req.session.userId })
+      const pairs = await Pair.find({ user: this.context.req.session.userId })
       if(!pairs.length) throw new UserInputError('Nothing to show!')
       return [...pairs] 
+    } catch (error) { throw error }
+  }
+
+  async additionalFunds({ amount }) {
+    try {
+      const user = await User.findById(this.context.req.session.userId)
+      if(user) user.bankroll += amount 
+      const savedUser = await user.save()
+      const success = true
+      const messege = `Congrats ${savedUser.name} you've added ${amount} to your bankroll!`
+      return { bankroll: savedUser.bankroll, success, messege } 
     } catch (error) { throw error }
   }
 }

@@ -15,6 +15,7 @@ const typeDefs = gql`
     logout: Boolean!
     openPosition(pair: String!, lotSize: Int, openedAt: Float!, position: String!): PairUpdateResponse!
     closePosition(id: ID!, closedAt: Float!): PairUpdateResponse!
+    addFunds(amount: Int!): AddFundsResponse!
   }
 
   type PairDisplay {
@@ -63,6 +64,12 @@ const typeDefs = gql`
     success: Boolean!
     message: String!
     pair: Pair!
+  }
+
+  type AddFundsResponse {
+    success: Boolean!
+    messege: String!
+    bankroll: Int! 
   }
 `
 
