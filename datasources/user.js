@@ -123,10 +123,11 @@ class UserAPI extends DataSource {
   async additionalFunds({ amount }) {
     try {
       const user = await User.findById(this.context.req.session.userId)
-      if(user) user.bankroll += amount 
+      if(!user) throw new AuthenticationError('Invalid credentials!')
+      user.bankroll += amount 
       const savedUser = await user.save()
       const success = true
-      const messege = `Congrats ${savedUser.name} you've added ${amount} to your bankroll!`
+      const messege = `Congrats ${user.name} you've added ${amount} to your bankroll!`
       return { bankroll: savedUser.bankroll, success, messege } 
     } catch (error) { throw error }
   }

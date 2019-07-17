@@ -63,8 +63,8 @@ const resolvers = {
     },
     addFunds: async (_, { amount }, { dataSources }) => {
       try {
-        const bandzAMakeHerDance = await dataSources.userAPI.additionalFunds({ amount })
-        return bandzAMakeHerDance
+        const weeee = await dataSources.userAPI.additionalFunds({ amount })
+        return weeee
       } catch (error) { throw error }
     }
   }
