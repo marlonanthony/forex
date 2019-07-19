@@ -15,7 +15,7 @@ const Landing = () => {
         if(error) return <button onClick={() => refetch()}>Retry</button>
         return data && (
           <main>
-            <h3>Currency Exchange</h3>
+            <h2>Currency Exchange</h2>
             <div>
               <SelectList fc={fc} tc={tc} setFc={setFc} setTc={setTc} />
               <button onClick={() => refetch()}>refresh</button>
