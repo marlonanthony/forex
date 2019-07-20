@@ -47,9 +47,7 @@ button, select { cursor: pointer; }
   left: calc(50% - 175px);
   top: 25%;
   padding: 20px;
-  animation-name: modal;
-  animation-duration: .5s;
-  animation-iteration-count: 1;
+  animation: modal .5s;
 }
 .open_position_modal p {
   color: black;
@@ -92,10 +90,13 @@ button, select { cursor: pointer; }
 
 .login input,
 .register input {
-  padding: 10px; 
+  padding: 5px; 
   margin: 10px 0px; 
   width: 80%;
   max-width: 500px;
+  background: var(--main-color);
+  color: var(--header-text-color);
+  font-size: 14px;
 }
 
 .login form,

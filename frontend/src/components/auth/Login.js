@@ -19,14 +19,14 @@ export default function Login(props) {
         })
       }}>
       {(login, { client, error }) => ( 
-        <main className='login'>
+        <div className='login'>
           <form onSubmit={ async (e) => {
             e.preventDefault()
             client.resetStore() 
             await login({variables: { email, password }})
             props.history.push('/') 
           }}>
-            <h1>Login</h1>
+            <h2>Login</h2>
             <input
               required
               name='email'
@@ -45,7 +45,7 @@ export default function Login(props) {
             { error ? <div style={{color: 'var(--text-color)', marginBottom: 5}}>{error.message.split(':')[1].trim()}</div> : null }
             <button type='submit'>Login</button>
           </form>
-        </main>
+        </div>
       )}
     </Mutation>
   )
