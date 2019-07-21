@@ -15,11 +15,7 @@ const Logout = () => (
       })
       return <Redirect to='/' />
     }}>
-    {logout => (
-      <div onClick={logout}>
-        Logout
-      </div>
-    )}
+    { logout => <div onClick={logout}>Logout</div> }
   </Mutation>
 )
 
