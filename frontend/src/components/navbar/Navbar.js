@@ -3,6 +3,7 @@ import { NavLink, Redirect } from 'react-router-dom'
 import { Query } from 'react-apollo'
 
 import { MEQUERY } from '../../graphql/queries/me'
+import Logout from '../auth/Logout'
 import './Navbar.css'
 
 const Navbar = () => (
@@ -21,7 +22,7 @@ const Navbar = () => (
         ) 
         return (
           <ul>
-            <li>Logout</li>
+            <li><Logout /></li>
           </ul>
         )
       }}
