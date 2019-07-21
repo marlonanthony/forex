@@ -1,17 +1,17 @@
 import React from 'react'
-import { NavLink, withRouter } from 'react-router-dom'
+import { NavLink, Redirect } from 'react-router-dom'
 import { Query } from 'react-apollo'
 
 import { MEQUERY } from '../../graphql/queries/me'
 import './Navbar.css'
 
-const Navbar = (props) => (
+const Navbar = () => (
   <div className='navigation'>
     <header><NavLink exact to='/'>Currency Exchange</NavLink></header>
     <Query query={MEQUERY}>
       {({ data, loading, error }) => {
         if(loading) return <p>Loading....</p>
-        if(error) props.history.push('/login')
+        if(error) return <Redirect to='/login' />
         if(!data) return <p>This is unfortunate</p>
         if(!data.me) return (
           <ul>
@@ -29,4 +29,4 @@ const Navbar = (props) => (
   </div>
 )
 
-export default withRouter(Navbar)
+export default Navbar
