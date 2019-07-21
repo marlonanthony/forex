@@ -93,10 +93,10 @@ button, select { cursor: pointer; }
   padding: 5px; 
   margin: 10px 0px; 
   width: 80%;
-  max-width: 500px;
+  max-width: 400px;
   background: var(--main-color);
   color: var(--header-text-color);
-  font-size: 14px;
+  font-size: 13px;
 }
 
 .login form,
@@ -105,4 +105,9 @@ button, select { cursor: pointer; }
   justify-content: center; 
   flex-direction: column; 
   align-items: center;
+}
+
+.errors { 
+  color: var(--text-color); 
+  margin-bottom: 5px;
 }

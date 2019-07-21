@@ -4,7 +4,7 @@ const typeDefs = gql`
   type Query {
     currencyPairInfo(fc: String, tc: String): PairDisplay!
     monthlyTimeSeries(fc: String, tc: String): TimeSeries!
-    me: User!
+    me: User
     findPair(id: ID!): Pair!
     getPairs: [Pair!]
   }

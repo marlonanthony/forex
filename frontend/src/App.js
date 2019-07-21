@@ -7,14 +7,16 @@ import Register from './components/auth/Register'
 import Login from './components/auth/Login'
 
 const App = () => (
-  <>
-    <div className='navbar'><Navbar /></div>
-    <Switch>
-      <Route exact path='/' component={Landing} />
-      <Route path='/register' component={Register} />
-      <Route path='/login' component={Login} />
-    </Switch>
-  </>
+  <Switch>
+    <Route path='/login' component={Login} />
+    <Route path='/' render={() => (
+      <>
+        <div className='navbar'><Navbar /></div>
+        <Route path='/register' component={Register} />
+        <Route exact path='/' component={Landing} />
+      </>
+    )} />
+  </Switch>
 )
 
 export default App
