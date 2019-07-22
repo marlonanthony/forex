@@ -24,7 +24,7 @@ const OpenLongPosition = ({
   >
     {(openPosition, { data, loading, error }) => {
       if(loading) return <div>Loading...</div>
-      if(error) return <small>Error: { error.message }</small>
+      if(error) return <p>Error: { error.message }</p>
       return openPosition && (
         <>
           <button onClick={() => {
