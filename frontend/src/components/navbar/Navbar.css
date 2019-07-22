@@ -19,6 +19,7 @@
 .navigation ul {
   display: flex;
   list-style: none;
+  margin-right: 15px;
 }
 
 .navigation li {

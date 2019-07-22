@@ -22,6 +22,7 @@ const Navbar = () => (
         ) 
         return (
           <ul>
+            <li><NavLink to='/account'>Account</NavLink></li>
             <li><Logout /></li>
           </ul>
         )

@@ -3,6 +3,7 @@ import { Query } from 'react-apollo'
 import { Link, Redirect } from 'react-router-dom'
 
 import { MEQUERY } from '../graphql/queries/me'
+import AddFunds from '../components/AddFunds'
 
 const Account = props => {
   const [open, setOpen] = useState(true)
@@ -28,7 +29,7 @@ const Account = props => {
           <div>
             <p><span>Available Balance: </span>{ data.me.bankroll.toLocaleString() +'.00' }</p> 
             <p><span>Total P/L: </span>{count}</p>
-            {/* AddFunds button will go here */}
+            <AddFunds />
         </div>
         <br />
         { props.location.state &&  (
