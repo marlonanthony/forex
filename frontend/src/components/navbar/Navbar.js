@@ -17,7 +17,7 @@ const Navbar = () => (
         if(!data.me) return (
           <ul>
             <li><NavLink exact to='/login'>Login</NavLink></li>
-            <li><NavLink exact to='register'>SignUp</NavLink></li>
+            <li><NavLink exact to='/register'>SignUp</NavLink></li>
           </ul>
         ) 
         return (
