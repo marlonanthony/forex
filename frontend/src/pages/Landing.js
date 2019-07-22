@@ -5,6 +5,7 @@ import { MEQUERY } from '../graphql/queries/me'
 import { CURRENCY_PAIR_INFO } from '../graphql/queries/currencyPairInfo'
 import SelectList from '../components/SelectList'
 import OpenLongPosition from '../components/positions/OpenLongPosition'
+import OpenShortPosition from '../components/positions/OpenShortPosition'
 
 const Landing = () => {
   const [fc, setFc] = useState('EUR'),
@@ -38,7 +39,14 @@ const Landing = () => {
                     showModal={showModal}
                     setShowModal={setShowModal}
                 />)}
-                <button>Sell</button>
+                { user.me && (
+                  <OpenShortPosition
+                    fc={fc}
+                    tc={tc}
+                    bidPrice={bidPrice}
+                    showModal={showModal}
+                    setShowModal={setShowModal}
+                />)}
               </div>
               { data.currencyPairInfo && Object.keys(data.currencyPairInfo).map(val => (
                 <div key={val} className='data'>
