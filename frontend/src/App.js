@@ -7,6 +7,7 @@ import Register from './components/auth/Register'
 import Login from './components/auth/Login'
 import Account from './pages/Account'
 import Pair from './pages/Pair'
+import Chart from './pages/Chart'
 
 const App = () => (
   <Switch>
@@ -17,6 +18,7 @@ const App = () => (
         <Route path='/register' component={Register} />
         <Route path='/account' component={Account} />
         <Route path='/pair' component={Pair} />
+        <Route path='/chart' component={Chart} />
         <Route exact path='/' component={Landing} />
       </>
     )} />
