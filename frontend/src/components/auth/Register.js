@@ -7,9 +7,10 @@ export default function Register(props) {
   const [email, setEmail] = useState(''),
         [password, setPassword] = useState(''),
         [name, setName] = useState('') 
+        
   return (
     <Mutation mutation={REGISTERMUTATION}>
-      {register => ( 
+      {(register, { error }) => ( 
         <div className='register'>
           <form onSubmit={ async e => {
             e.preventDefault()
@@ -39,6 +40,7 @@ export default function Register(props) {
               onChange={e => setName(e.target.value) }
               placeholder='Enter your name'
             />
+            { error && <p>{ error.message }</p> }
             <button type='submit' >SignUp</button>
           </form>
         </div>
