@@ -15,11 +15,11 @@ const App = () => (
     <Route path='/' render={() => (
       <>
         <div className='navbar'><Navbar /></div>
+        <Route exact path='/' component={Landing} />
         <Route path='/register' component={Register} />
         <Route path='/account' component={Account} />
         <Route path='/pair' component={Pair} />
         <Route path='/chart' component={Chart} />
-        <Route exact path='/' component={Landing} />
       </>
     )} />
   </Switch>

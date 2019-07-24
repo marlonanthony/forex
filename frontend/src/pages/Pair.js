@@ -4,6 +4,7 @@ import { Redirect } from 'react-router-dom'
 
 import { CURRENCY_PAIR_INFO } from '../graphql/queries/currencyPairInfo'
 import ClosePosition from '../components/positions/ClosePosition'
+import PairDetails from '../components/PairDetails'
 
 const Pair = props => {
   if(!props.location.state) return <Redirect to='/login' />
@@ -38,36 +39,20 @@ const Pair = props => {
                   />
                 </div>
               </div>
-              <div>
-                <p><span>Currency Pair: </span>{pair}</p>
-                <p><span>Lot Size: </span>{lotSize.toLocaleString()+'.00'}</p>
-                <p><span>Opened At: </span>{openedAt}</p>
-                <p><span>Position: </span>{position}</p>
-                <p><span>Created At: </span>{new Date(+createdAt).toLocaleString()}</p>
-                { position === 'long' 
-                  ? (
-                    <>
-                      <br />
-                      <p><span>Current Bid Price: </span>{bidPrice}</p>
-                      <p><span>Last Refreshed: </span>{lastRefreshed}</p>
-                      <p><span>Current Pip Difference: </span>{pipDifLong}</p>
-                      <p><span>Potential PL: </span>
-                        {potentialProfitLossLong.toLocaleString()+'.00'}
-                      </p>
-                    </> ) 
-                  : (
-                    <>
-                      <br />
-                      <p><span>Current Ask Price: </span>{+askPrice}</p>
-                      <p><span>Last Refreshed: </span>{lastRefreshed}</p>
-                      <p><span>Current Pip Difference: </span>{pipDifShort}</p>
-                      <p><span>Potential PL: </span>
-                        {potentialProfitLossShort.toLocaleString()+'.00'}
-                      </p>
-                    </>
-                  )
-                }
-              </div>
+              <PairDetails
+                pair={pair} 
+                lotSize={lotSize}
+                openedAt={openedAt}
+                position={position}
+                createdAt={createdAt}
+                askPrice={askPrice}
+                bidPrice={bidPrice}
+                lastRefreshed={lastRefreshed}
+                pipDifLong={pipDifLong}
+                pipDifShort={pipDifShort}
+                potentialProfitLossLong={potentialProfitLossLong}
+                potentialProfitLossShort={potentialProfitLossShort}
+              />
             </main>
           )
         }}
