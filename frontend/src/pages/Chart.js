@@ -5,7 +5,7 @@ import { Query } from 'react-apollo'
 import { MONTHLYTIMESERIES } from '../graphql/queries/monthlyTimeSeries'
 import Spinner from '../components/spinner/Spinner'
 
-const Chart = () => {
+export default function Chart() {
   const [fc, setFc] = useState('EUR'),
         [tc, setTc] = useState('USD'), 
         [fromCurrency, setFromCurrency] = useState('EUR'), 
@@ -74,5 +74,3 @@ const Chart = () => {
     </Query>
   )
 }
-
-export default Chart

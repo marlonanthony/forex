@@ -22,7 +22,7 @@ export default function ClosePosition({ id, bidPrice, askPrice, position }) {
         return closePosition && (
           <>
             <button onClick={() => {
-              position == 'long' 
+              position === 'long' 
                 ? alert('Are you sure you want to sell your long position?') 
                 : alert('Are you sure you want to close your short position?')
               closePosition()

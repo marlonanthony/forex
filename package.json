@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index.js"
+    "start": "nodemon index.js",
+    "client": "npm start --prefix frontend",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "keywords": [],
   "author": "",
@@ -14,6 +16,7 @@
     "apollo-datasource-rest": "^0.5.1",
     "apollo-server-express": "^2.6.9",
     "bcryptjs": "^2.4.3",
+    "concurrently": "^4.1.1",
     "express": "^4.17.1",
     "express-session": "^1.16.2",
     "graphql": "^14.4.2",
