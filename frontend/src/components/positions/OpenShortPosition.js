@@ -34,7 +34,7 @@ const OpenShortPosition = ({
             Sell
           </button> 
           { data && data.openPosition.message && showModal && ( 
-            <div className='open_position_modal'>
+            <div className='modal'>
               <button onClick={() => setShowModal(false)}>x</button>
               <p>{data && data.openPosition.message}!</p>
               <p>Currency Pair: {data.openPosition.pair.pair}</p>

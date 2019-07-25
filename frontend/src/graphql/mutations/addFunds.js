@@ -4,7 +4,7 @@ export const ADDFUNDS = gql`
   mutation ($amount: Int!) {
     addFunds(amount: $amount) {
       success
-      messege
+      message
       bankroll
     }
   }

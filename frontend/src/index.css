@@ -38,7 +38,7 @@ button, select { cursor: pointer; }
   padding: 5px 5px 5px 0;
 }
 
-.open_position_modal {
+.modal {
   position: absolute;
   background: rgb(225,225,225);
   border: 1px solid lightblue;
@@ -49,7 +49,7 @@ button, select { cursor: pointer; }
   padding: 20px;
   animation: modal .5s;
 }
-.open_position_modal p {
+.modal p {
   color: black;
 }
 
