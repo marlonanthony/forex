@@ -22,7 +22,7 @@ export default function Login(props) {
         <div className='login'>
           <form onSubmit={ async (e) => {
             e.preventDefault()
-            client.resetStore() 
+            client.clearStore() 
             await login({variables: { email, password }})
             props.history.push('/') 
           }}>
