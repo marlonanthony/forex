@@ -28,8 +28,8 @@ const OpenShortPosition = ({
         <>
           <button onClick={() => {
             alert('Are you sure you want to sell short?')
-            setShowModal(true) 
             openPosition()
+            setShowModal(true) 
           }}>
             Sell
           </button> 

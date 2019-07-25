@@ -29,8 +29,8 @@ const OpenLongPosition = ({
         <>
           <button onClick={() => {
             alert('Are you sure you want to buy?')
-            setShowModal(true)
             openPosition()
+            setShowModal(true)
           }}>
             Buy
           </button>
