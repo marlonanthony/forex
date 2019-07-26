@@ -42,7 +42,7 @@ const OpenShortPosition = ({
               <p>Opened At: {data.openPosition.pair.openedAt}</p>
               <p>Position: {data.openPosition.pair.position}</p>
               <Link to={{ pathname: '/account', state: { data } }}>
-                <span>Details</span>
+                <button>Details</button>
               </Link>
             </div>
           )}

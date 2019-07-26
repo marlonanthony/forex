@@ -34,7 +34,7 @@ export default function ClosePosition({ id, bidPrice, askPrice, position }) {
               <div className='modal'>
                 <button onClick={() => setShowModal(false)}>X</button>
                 <p>{data && data.closePosition.message}!</p>
-                <Link to='/account'><span>Account</span></Link>
+                <Link to='/account'><button>Account</button></Link>
               </div>
             )}
           </>
