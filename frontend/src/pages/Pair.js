@@ -22,13 +22,14 @@ const Pair = props => {
                 pipDifLong = (bidPrice - openedAt).toFixed(4),
                 potentialProfitLossLong = pipDifLong * lotSize,
                 pipDifShort = (openedAt - askPrice).toFixed(4),
-                potentialProfitLossShort = pipDifShort * lotSize
+                potentialProfitLossShort = pipDifShort * lotSize,
+                date = new Date(lastRefreshed + ' UTC')
           
           return  data && (
             <main>
               <h3>Pair Details</h3>
               <div>
-                <p>{ name } your available balance: { bankroll.toLocaleString() +'.00' }</p> 
+                <p>{ name } your available balance: { bankroll.toLocaleString()}.00</p> 
                 <div>
                   <button onClick={() => refetch()}>Refresh</button>
                   <ClosePosition 
@@ -47,7 +48,7 @@ const Pair = props => {
                 createdAt={createdAt}
                 askPrice={askPrice}
                 bidPrice={bidPrice}
-                lastRefreshed={lastRefreshed}
+                lastRefreshed={date.toLocaleString()}
                 pipDifLong={pipDifLong}
                 pipDifShort={pipDifShort}
                 potentialProfitLossLong={potentialProfitLossLong}

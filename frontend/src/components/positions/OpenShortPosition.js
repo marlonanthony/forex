@@ -38,7 +38,7 @@ const OpenShortPosition = ({
               <button onClick={() => setShowModal(false)}>x</button>
               <p>{data && data.openPosition.message}!</p>
               <p>Currency Pair: {data.openPosition.pair.pair}</p>
-              <p>Lot Size: {data.openPosition.pair.lotSize.toLocaleString() +'.00'}</p>
+              <p>Lot Size: {data.openPosition.pair.lotSize.toLocaleString()}.00</p>
               <p>Opened At: {data.openPosition.pair.openedAt}</p>
               <p>Position: {data.openPosition.pair.position}</p>
               <Link to={{ pathname: '/account', state: { data } }}>

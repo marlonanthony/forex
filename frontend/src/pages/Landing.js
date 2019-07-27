@@ -25,7 +25,7 @@ const Landing = () => {
           return (
             <main>
               <h2>Currency Exchange</h2>
-              { user.me && <p>Available Balance { user.me.bankroll.toLocaleString() + '.00'}</p> }
+              { user.me && <p>Available Balance { user.me.bankroll.toLocaleString()}.00</p> }
               <div>
                 <SelectList fc={fc} tc={tc} setFc={setFc} setTc={setTc} />
                 <button onClick={() => refetch()}>Refresh</button>
