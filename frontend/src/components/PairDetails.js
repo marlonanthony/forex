@@ -11,8 +11,7 @@ const PairDetails = ({
   lastRefreshed,
   pipDifLong,
   pipDifShort,
-  potentialProfitLossLong,
-  potentialProfitLossShort
+  potentialProfitLoss
 }) => (
   <div>
     <p><span>Currency Pair: </span>{pair}</p>
@@ -28,7 +27,7 @@ const PairDetails = ({
           <p><span>Last Refreshed: </span>{lastRefreshed}</p>
           <p><span>Current Pip Difference: </span>{pipDifLong}</p>
           <p><span>Potential PL: </span>
-            {potentialProfitLossLong.toLocaleString()}.00
+            {potentialProfitLoss.toLocaleString()}.00
           </p>
         </> ) 
       : (
@@ -38,7 +37,7 @@ const PairDetails = ({
           <p><span>Last Refreshed: </span>{lastRefreshed}</p>
           <p><span>Current Pip Difference: </span>{pipDifShort}</p>
           <p><span>Potential PL: </span>
-            {potentialProfitLossShort.toLocaleString()}.00
+            {potentialProfitLoss.toLocaleString()}.00
           </p>
         </>
       )
