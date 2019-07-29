@@ -8,12 +8,12 @@
 }
 
 body {
-  margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  margin: 0;
   background: var(--main-color);
   text-align: center;
   box-sizing: border-box;
@@ -105,9 +105,4 @@ button, select { cursor: pointer; }
   justify-content: center; 
   flex-direction: column; 
   align-items: center;
-}
-
-.errors { 
-  color: var(--text-color); 
-  margin-bottom: 5px;
 }

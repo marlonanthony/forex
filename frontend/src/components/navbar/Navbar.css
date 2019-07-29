@@ -28,7 +28,7 @@
 }
 .navigation li:hover {
   cursor: pointer;
-  color: black;
+  color: var(--main-color);
 }
 
 .navigation a {
@@ -38,5 +38,5 @@
 .navigation a:hover,
 .navigation a:active,
 .navigation a.active {
-  color: black;
+  color: var(--main-color);
 }

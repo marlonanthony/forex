@@ -14,7 +14,7 @@ export default function Chart() {
   return (
     <Query query={MONTHLYTIMESERIES} variables={{ fc, tc }}>
       {({ data, loading, error }) => {
-        if(loading) return <Spinner />
+        if(loading) return <p>Loading...</p>
         if(error) return <p>{ error.message }</p>
         if(data) {
           const labels = data.monthlyTimeSeries.timesArray

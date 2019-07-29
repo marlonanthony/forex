@@ -42,10 +42,7 @@ export default function Login(props) {
               onChange={e => setPassword(e.target.value)}
               placeholder='Enter your password'
             />
-            { error &&  <div className='errors'>
-                {error.message.split(':')[1].trim()}
-              </div> 
-            }
+            { error && <p>{error.message}</p> }
             <button type='submit'>Login</button>
           </form>
         </div>
