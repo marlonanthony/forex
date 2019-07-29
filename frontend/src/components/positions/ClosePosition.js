@@ -17,7 +17,7 @@ export default function ClosePosition({ id, bidPrice, askPrice, position }) {
       refetchQueries={[{ query: MEQUERY }]}
     >
       {(closePosition, { data, loading, error }) => {
-        if(loading) return <div>Loading...</div>
+        if(loading) return <p>Loading...</p>
         if(error) return <p>{ error.message }</p>
         return closePosition && (
           <>

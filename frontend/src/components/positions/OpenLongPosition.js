@@ -23,7 +23,7 @@ const OpenLongPosition = ({
     refetchQueries={[{ query: MEQUERY }]}
   >
     {(openPosition, { data, loading, error }) => {
-      if(loading) return <div>Loading...</div>
+      if(loading) return <p>Loading...</p>
       if(error) return <p>Error: { error.message }</p>
       return openPosition && (
         <>

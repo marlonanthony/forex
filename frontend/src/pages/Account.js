@@ -11,7 +11,7 @@ const Account = props => {
   return (
     <Query query={MEQUERY}>
     {({ data, loading, error }) => {
-      if(loading) return <div>Loading...</div>
+      if(loading) return <p>Loading...</p>
       if(error) return <Redirect to='/login' />
       if(!data) return <div>Poor sap!</div>
       if(!data.me) return <Redirect to='/login' />

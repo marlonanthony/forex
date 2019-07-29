@@ -14,7 +14,7 @@ const AddFunds = () => {
       refetchQueries={[{ query: MEQUERY }]}
     >
       {(addFunds, { data, loading, error }) => {
-        if(loading) return <div>Loading...</div>
+        if(loading) return <p>Loading...</p>
         if(error) return <p>Error: { error.message }</p>
         return addFunds && (
           <>

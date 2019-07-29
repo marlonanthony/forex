@@ -16,7 +16,7 @@ const Pair = props => {
     return (
       <Query query={CURRENCY_PAIR_INFO} variables={{ fc, tc }}>
         {({ data, loading, error, refetch }) => {
-          if(loading) return <div>Loading...</div>
+          if(loading) return <p>Loading...</p>
           if(error) return <p>{ error.message }</p>
           const { bidPrice, lastRefreshed, askPrice } = data.currencyPairInfo,
                 pipDifLong = (bidPrice - openedAt).toFixed(4),

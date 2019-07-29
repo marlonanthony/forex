@@ -17,7 +17,7 @@ const Landing = () => {
   return (
     <Query query={CURRENCY_PAIR_INFO} variables={{ fc, tc }}>
       {({ data, loading, error, refetch, client }) => {
-        if(loading) return <div>Loading...</div>
+        if(loading) return <p>Loading...</p>
         if(error) return <button onClick={() => refetch()}>Retry</button>
         if(data) { 
           const user = client.readQuery({ query: MEQUERY })
