@@ -14,7 +14,7 @@ export default function Register(props) {
         <div className='register'>
           <form onSubmit={ async e => {
             e.preventDefault()
-            await register({variables: { email, password, name }})
+            await register({ variables: { email, password, name } })
             props.history.push('/login')
           }}>
             <h2>Sign Up</h2>
@@ -30,14 +30,14 @@ export default function Register(props) {
               required
               type='password'
               value={password}
-              onChange={e => setPassword(e.target.value) }
+              onChange={e => setPassword(e.target.value)}
               placeholder='Enter your password'
             />
             <input
               required
               type='text'
               value={name}
-              onChange={e => setName(e.target.value) }
+              onChange={e => setName(e.target.value)}
               placeholder='Enter your name'
             />
             { error && <p>{ error.message }</p> }

@@ -20,10 +20,10 @@ export default function Login(props) {
       }}>
       {(login, { client, error }) => ( 
         <div className='login'>
-          <form onSubmit={ async (e) => {
+          <form onSubmit={ async e => {
             e.preventDefault()
             client.clearStore() 
-            await login({variables: { email, password }})
+            await login({ variables: { email, password } })
             props.history.push('/') 
           }}>
             <h2>Login</h2>
@@ -32,14 +32,14 @@ export default function Login(props) {
               name='email'
               type='email'
               value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={e => setEmail(e.target.value)}
               placeholder='Enter your email'
             />
             <input
               required
               type='password'
               value={password}
-              onChange={(e) => setPassword(e.target.value) }
+              onChange={e => setPassword(e.target.value)}
               placeholder='Enter your password'
             />
             { error &&  <div className='errors'>

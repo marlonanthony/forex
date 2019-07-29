@@ -7,7 +7,7 @@ import { LOGOUT_MUTATION } from '../../graphql/mutations/logout'
 
 const Logout = props => (
   <Mutation
-    mutation={LOGOUT_MUTATION}
+    mutation={LOGOUT_MUTATION} 
     update={cache => {
       cache.writeQuery({
         query: MEQUERY,
