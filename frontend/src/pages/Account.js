@@ -13,11 +13,11 @@ const Account = props => {
     <Query query={ GETPAIRS }>
     {({ data, loading, error, client }) => {
       if(loading) return <p>Loading...</p>
+      if(!data) return <p>Nothing to show!</p>
       if(error) return <Redirect to='/login' />
-      if(!data) return <div>Poor sap!</div>
-      if(!data.getPairs) return <p>Nothing to show</p>
 
       const user = client.readQuery({ query: MEQUERY })
+      if(!user) return <Redirect to='/login' />
 
       let count = 0
       data.getPairs.forEach(pair => {
@@ -71,8 +71,8 @@ const Account = props => {
                 { pair.position && <p><span>Position: </span>{ pair.position }</p> }
                 { pair.openedAt && <p><span>Opened At: </span>{ pair.openedAt.toFixed(4) }</p> }
                 { pair.closedAt && <p><span>Closed At: </span>{ pair.closedAt.toFixed(4) }</p> }
-                { pair.pipDif && <p><span>Pip Dif: </span>{ pair.pipDif }</p> }
-                { pair.profitLoss && <p><span>Profit/Loss: </span>{ pair.profitLoss.toFixed(2) }</p> }
+                { <p><span>Pip Dif: </span>{ pair.pipDif || 0 }</p> }
+                { <p><span>Profit/Loss: </span>{ pair.profitLoss.toFixed(2) || 0 }</p> }
                 { pair.createdAt && <p><span>Created At: </span>{ new Date(+pair.createdAt).toLocaleString() }</p> }
                 { pair.updatedAt && <p><span>Updated At: </span>{ new Date(+pair.updatedAt).toLocaleString() }</p> }
               </div>
