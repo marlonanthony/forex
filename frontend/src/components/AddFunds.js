@@ -9,8 +9,8 @@ const AddFunds = () => {
   
   return (
     <Mutation 
-      mutation={ADDFUNDS} 
-      variables={{amount: 1000000}}
+      mutation={ ADDFUNDS } 
+      variables={{ amount: 1000000 }}
       refetchQueries={[{ query: MEQUERY }]}
     >
       {(addFunds, { data, loading, error }) => {
@@ -26,7 +26,7 @@ const AddFunds = () => {
             { data && data.addFunds.message && showModal && ( 
               <div className='modal'>
                 <button onClick={() => setShowModal(false)}>x</button>
-                <p>{data.addFunds.message}!</p>
+                <p>{ data.addFunds.message }</p>
               </div>
             )}
           </>
