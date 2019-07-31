@@ -7,19 +7,19 @@ export const MEQUERY = gql`
       email 
       name
       bankroll
-      pairs {
-        id
-        pair
-        lotSize
-        position
-        openedAt
-        closedAt
-        pipDif
-        profitLoss
-        open
-        createdAt
-        updatedAt
-      }
+      # pairs {
+      #   id
+      #   pair
+      #   lotSize
+      #   position
+      #   openedAt
+      #   closedAt
+      #   pipDif
+      #   profitLoss
+      #   open
+      #   createdAt
+      #   updatedAt
+      # }
     }
   }
 `

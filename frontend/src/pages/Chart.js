@@ -3,7 +3,7 @@ import { Line } from 'react-chartjs-2'
 import { Query } from 'react-apollo'
 
 import { MONTHLYTIMESERIES } from '../graphql/queries/monthlyTimeSeries'
-import Spinner from '../components/spinner/Spinner'
+// import Spinner from '../components/spinner/Spinner'
 
 export default function Chart() {
   const [fc, setFc] = useState('EUR'),
@@ -12,7 +12,7 @@ export default function Chart() {
         [toCurrency, setToCurrency] = useState('USD')
 
   return (
-    <Query query={MONTHLYTIMESERIES} variables={{ fc, tc }}>
+    <Query query={ MONTHLYTIMESERIES } variables={{ fc, tc }}>
       {({ data, loading, error }) => {
         if(loading) return <p>Loading...</p>
         if(error) return <p>{ error.message }</p>
@@ -29,13 +29,13 @@ export default function Chart() {
               }}>
                 <input 
                   name='fromCurrency'
-                  value={fromCurrency}
+                  value={ fromCurrency }
                   placeholder='From Currency'
                   onChange={e => setFromCurrency(e.target.value)}
                 />
-                <input 
+                <input  
                   name='toCurrency'
-                  value={toCurrency}
+                  value={ toCurrency }
                   placeholder='To Currency'
                   onChange={e => setToCurrency(e.target.value)}
                 />

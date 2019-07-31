@@ -79,7 +79,7 @@ button, select { cursor: pointer; }
 
 /* Chart  */
 
-.chartData {  padding-top: 50px; }
+.chartData {  padding-top: 50px; background: black; height: 100vh; }
 .chartData form input,
 .chartData form button {
   margin: 10px;

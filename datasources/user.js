@@ -43,7 +43,7 @@ class UserAPI extends DataSource {
   async getMe() {
     try {
       if(!this.context.req.session.userId) return null 
-      const user = await User.findById(this.context.req.session.userId).populate('pairs')
+      const user = await User.findById(this.context.req.session.userId)
       return user 
     } catch (error) { throw error }
   }
