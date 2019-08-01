@@ -114,7 +114,7 @@ class UserAPI extends DataSource {
   
   async findPairs() {
     try {
-      const pairs = await Pair.find({ user: this.context.req.session.userId })
+      const pairs = await Pair.find({ user: this.context.req.session.userId }).sort({ updatedAt: -1 })
       if(!pairs.length) throw new UserInputError('Nothing to show!')
       return [...pairs] 
     } catch (error) { throw error }

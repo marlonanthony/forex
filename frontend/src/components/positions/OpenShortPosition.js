@@ -4,6 +4,7 @@ import { Mutation } from 'react-apollo'
 
 import { OPENPOSITION } from '../../graphql/mutations/openPosition'
 import { MEQUERY } from '../../graphql/queries/me'
+import { GETPAIRS } from '../../graphql/queries/getPairs'
 
 const OpenShortPosition = ({
   fc,
@@ -20,7 +21,7 @@ const OpenShortPosition = ({
       openedAt: bidPrice, 
       position: 'short' 
     }}
-    refetchQueries={[{ query: MEQUERY }]}>
+    refetchQueries={[{ query: MEQUERY }, { query: GETPAIRS }]}>
     {(openPosition, { data, loading, error }) => {
       if(loading) return <p>Loading...</p>
       if(error) return <small>Error: { error.message }</small>
