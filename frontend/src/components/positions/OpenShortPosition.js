@@ -24,7 +24,7 @@ const OpenShortPosition = ({
     refetchQueries={[{ query: MEQUERY }, { query: GETPAIRS }]}>
     {(openPosition, { data, loading, error }) => {
       if(loading) return <p>Loading...</p>
-      if(error) return <small>Error: { error.message }</small>
+      if(error) return <p>{ error.message }</p>
       return openPosition && (
         <>
           <button onClick={() => {
