@@ -102,10 +102,8 @@ class UserAPI extends DataSource {
 
   async getPair({ id }) {
     try {
-      const user = await User.findById(this.context.req.session.userId)
-      if(!user) throw new AuthenticationError('Invalid credentials')
       const pair = await Pair.findById(id)
-      if(!pair || pair.user.toString() !== user.id.toString()) { 
+      if(!pair || pair.user.toString() !== this.context.req.session.userId) { 
         throw new AuthenticationError('Invalid credentials!') 
       } 
       return pair
@@ -114,7 +112,9 @@ class UserAPI extends DataSource {
   
   async findPairs() {
     try {
-      const pairs = await Pair.find({ user: this.context.req.session.userId }).sort({ updatedAt: -1 })
+      const pairs = await Pair
+        .find({ user: this.context.req.session.userId })
+        .sort({ updatedAt: -1 })
       if(!pairs.length) throw new UserInputError('Nothing to show!')
       return [...pairs] 
     } catch (error) { throw error }
