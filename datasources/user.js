@@ -94,7 +94,7 @@ class UserAPI extends DataSource {
       await user.save() 
 
       const success = true 
-      const message = `${savedPair.profitLoss > 0 ? `Congrats! ` : ''}${user.name} you've closed your ${savedPair.position} position on ${savedPair.pair} at ${closedAt}${savedPair.profitLoss > 0 ? '! For a profit of '+Math.round(savedPair.profitLoss) : '. For a loss of '+Math.round(savedPair.profitLoss)}`
+      const message = `${savedPair.profitLoss > 0 ? `Congrats! ` : ''}${user.name} you've closed your ${savedPair.position} position on ${savedPair.pair} at ${closedAt}${savedPair.profitLoss > 0 ? '! For a profit of '+Math.round(savedPair.profitLoss)+'!' : '. For a loss of '+Math.round(savedPair.profitLoss)+'.'}`
       return { success, message, pair: savedPair }
     }
     catch (error) { throw error }
