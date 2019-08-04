@@ -18,17 +18,16 @@ const Account = props => {
     <Query query={ GETPAIRS }>
     {({ data, loading, error }) => {
       if(loading) return <p>Loading...</p>
-      if(!data) return <p>Nothing to show!</p>
       if(error) return <Redirect to='/login' />
 
       let count = 0
-      data.getPairs.forEach(pair => {
+      data && data.getPairs.forEach(pair => {
         if(!pair.open) {
           count += pair.profitLoss
         } 
       })
 
-      return user.data && (
+      return user.data && data && (
         <main>
           <h2>{ user.data.me.name }</h2>
           <div>
