@@ -5,7 +5,12 @@ export const ADDFUNDS = gql`
     addFunds(amount: $amount) {
       success
       message
-      bankroll
+      user {
+        id
+        name
+        email
+        bankroll
+      }
     }
   }
 `

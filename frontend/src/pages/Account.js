@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Query } from 'react-apollo'
 import { Link, Redirect } from 'react-router-dom'
+// import { useQuery } from 'react-apollo-hooks'
 
 import { GETPAIRS } from '../graphql/queries/getPairs'
 import { MEQUERY } from '../graphql/queries/me'

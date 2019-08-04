@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import { Mutation } from 'react-apollo'
 
 import { ADDFUNDS } from '../graphql/mutations/addFunds'
-import { MEQUERY } from '../graphql/queries/me';
 
 const AddFunds = () => {
   const [showModal, setShowModal] = useState(false)
@@ -11,11 +10,10 @@ const AddFunds = () => {
     <Mutation 
       mutation={ ADDFUNDS } 
       variables={{ amount: 1000000 }}
-      refetchQueries={[{ query: MEQUERY }]}
     >
       {(addFunds, { data, loading, error }) => {
         if(loading) return <p>Loading...</p>
-        if(error) return <p>Error: { error.message }</p>
+        if(error) return <p>{ error.message }</p>
         return addFunds && (
           <>
             <button onClick={() => {

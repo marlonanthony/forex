@@ -66,7 +66,7 @@ class UserAPI extends DataSource {
       user.pairs.unshift(pairResult)
       user.bankroll -= lotSize
       await user.save()
-      const message = `Congrats ${user.name}! You've opened a ${position} position on ${pair} at ${openedAt}`
+      const message = `Congrats ${user.name}! You've opened a ${position} position on ${pair} at ${openedAt}!`
       const success = true
       return { success, message, pair: pairResult }
     } catch (error) { throw error }
@@ -128,7 +128,7 @@ class UserAPI extends DataSource {
       const savedUser = await user.save()
       const success = true
       const message = `Congrats ${user.name} you've added ${amount} to your bankroll!`
-      return { bankroll: savedUser.bankroll, success, message } 
+      return { user: savedUser, success, message } 
     } catch (error) { throw error }
   }
 }

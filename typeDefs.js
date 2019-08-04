@@ -69,7 +69,8 @@ const typeDefs = gql`
   type AddFundsResponse {
     success: Boolean!
     message: String!
-    bankroll: Int! 
+    user: User!
+    # bankroll: Int! 
   }
 `
 
