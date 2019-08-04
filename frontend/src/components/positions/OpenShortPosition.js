@@ -14,7 +14,7 @@ const OpenShortPosition = ({
   setShowModal
 }) => (
   <Mutation
-    mutation={OPENPOSITION}
+    mutation={ OPENPOSITION }
     variables={{ 
       pair: `${fc}/${tc}`, 
       lotSize: 100000, 
@@ -27,9 +27,9 @@ const OpenShortPosition = ({
       if(error) return <p>{ error.message }</p>
       return openPosition && (
         <>
-          <button onClick={() => {
+          <button onClick={ async () => {
             alert('Are you sure you want to sell short?')
-            openPosition()
+            await openPosition()
             setShowModal(true) 
           }}>
             Sell

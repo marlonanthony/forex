@@ -28,9 +28,9 @@ const OpenLongPosition = ({
       if(error) return <p>{ error.message }</p>
       return openPosition && (
         <>
-          <button onClick={() => {
+          <button onClick={ async () => {
             alert('Are you sure you want to buy?')
-            openPosition()
+            await openPosition()
             setShowModal(true)
           }}>
             Buy

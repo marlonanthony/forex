@@ -1,7 +1,8 @@
 /* Global */
 
 * {
-  --main-color: rgb(15,15,23);
+  /* --main-color: rgb(15,15,23); */
+  --main-color: rgb(0,0,0);
   --secondary-color: rgb(55,131,194);
   --text-color: rgba(200,200,200, 0.6);
   --header-text-color: rgb(200,200,200);

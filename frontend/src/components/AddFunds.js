@@ -3,7 +3,7 @@ import { Mutation } from 'react-apollo'
 
 import { ADDFUNDS } from '../graphql/mutations/addFunds'
 
-const AddFunds = () => {
+export default function AddFunds() {
   const [showModal, setShowModal] = useState(false)
   
   return (
@@ -33,5 +33,3 @@ const AddFunds = () => {
     </Mutation>
   )
 }
-
-export default AddFunds

@@ -22,10 +22,10 @@ export default function ClosePosition({ id, bidPrice, askPrice, position }) {
         if(error) return <p>{ error.message }</p>
         return closePosition && (
           <>
-            <button onClick={() => {
+            <button onClick={ async () => {
               alert(`Are you sure you want to close your ${
                 position === 'long' ? 'long' : 'short' } position?`) 
-              closePosition()
+              await closePosition()
               setShowModal(true)
             }}>
               { position === 'long' ? 'Sell' : 'Buy' }

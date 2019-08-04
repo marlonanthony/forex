@@ -8,7 +8,7 @@ import './Navbar.css'
 
 const Navbar = () => (
   <div className='navigation'>
-    <header><NavLink exact to='/'>Currency Exchange</NavLink></header>
+    <header><NavLink exact to='/'>Forex</NavLink></header>
     <Query query={MEQUERY}>
       {({ data, loading, error }) => {
         if(loading) return <p>Loading....</p>
