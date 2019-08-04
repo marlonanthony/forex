@@ -1,24 +1,22 @@
 import React, { useState } from 'react'
 import { Query } from 'react-apollo'
 import { Link, Redirect } from 'react-router-dom'
-// import { useQuery } from 'react-apollo-hooks'
+import { useQuery } from 'react-apollo-hooks'
 
 import { GETPAIRS } from '../graphql/queries/getPairs'
 import { MEQUERY } from '../graphql/queries/me'
 import AddFunds from '../components/AddFunds'
 
 const Account = props => {
-  const [open, setOpen] = useState(true)
+  const [open, setOpen] = useState(true),
+        userData = useQuery(MEQUERY)
   
   return (
     <Query query={ GETPAIRS }>
-    {({ data, loading, error, client }) => {
+    {({ data, loading, error }) => {
       if(loading) return <p>Loading...</p>
       if(!data) return <p>Nothing to show!</p>
       if(error) return <Redirect to='/login' />
-
-      const user = client.readQuery({ query: MEQUERY })
-      if(!user) return <Redirect to='/login' />
 
       let count = 0
       data.getPairs.forEach(pair => {
@@ -29,9 +27,9 @@ const Account = props => {
 
       return (
         <main>
-          <h2>{ user.me.name }</h2>
+          <h2>{ userData.data && userData.data.me.name }</h2>
           <div>
-            <p><span>Available Balance: </span>{ user.me.bankroll.toLocaleString() }.00</p> 
+            <p><span>Available Balance: </span>{ userData.data && userData.data.me.bankroll.toLocaleString() }.00</p>
             <p><span>Total P/L: </span>{ count }</p>
             <AddFunds />
           </div>
@@ -54,7 +52,7 @@ const Account = props => {
           <div>
           { data.getPairs && data.getPairs.map(pair => pair.open && open && (
             <div className='pair_divs' key={pair.id}>
-              <Link to={{ pathname: '/pair', state: { pair, me: user.me } }}>
+              <Link to={{ pathname: '/pair', state: { pair, me: userData.data && userData.data.me } }}>
                 { pair.pair && <p><span>Currency Pair: </span>{ pair.pair }</p> }
                 { pair.lotSize && <p><span>Lot Size: </span>{ pair.lotSize.toLocaleString() }.00</p> }
                 { pair.position && <p><span>Position: </span>{ pair.position }</p> }

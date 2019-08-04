@@ -30,7 +30,7 @@ const Pair = props => {
             <main>
               <h3>Pair Details</h3>
               <div>
-                <p>{ name } your available balance: { bankroll.toLocaleString() }.00</p> 
+                <p>{ name } your available balance is { bankroll.toLocaleString() }.00</p> 
                 <div>
                   <button onClick={() => refetch()}>Refresh</button>
                   <ClosePosition 

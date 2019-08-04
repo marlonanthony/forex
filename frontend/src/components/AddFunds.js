@@ -16,9 +16,9 @@ const AddFunds = () => {
         if(error) return <p>{ error.message }</p>
         return addFunds && (
           <>
-            <button onClick={() => {
+            <button onClick={ async () => {
               alert('Are you sure?')
-              addFunds()
+              await addFunds()
               setShowModal(true) 
             }}>Add Funds</button> 
             { data && data.addFunds.message && showModal && ( 
