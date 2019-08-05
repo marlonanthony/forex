@@ -21,15 +21,23 @@ const OpenShortPosition = ({
       openedAt: bidPrice, 
       position: 'short' 
     }}
-    refetchQueries={[{ query: MEQUERY }, { query: GETPAIRS }]}>
+    update={(cache) => {
+      const user = cache.readQuery({ query: MEQUERY })
+      user.me.bankroll -= 100000
+      cache.writeQuery({
+        query: MEQUERY,
+        data: { me: user.me }
+      })
+    }}
+    refetchQueries={[{ query: GETPAIRS }]}>
     {(openPosition, { data, loading, error }) => {
       if(loading) return <p>Loading...</p>
       if(error) return <p>{ error.message }</p>
       return openPosition && (
         <>
-          <button onClick={ async () => {
+          <button onClick={() => {
             alert('Are you sure you want to sell short?')
-            await openPosition()
+            openPosition()
             setShowModal(true) 
           }}>
             Sell

@@ -3,7 +3,7 @@ import { Query } from 'react-apollo'
 
 import { MEQUERY } from '../graphql/queries/me'
 import { CURRENCY_PAIR_INFO } from '../graphql/queries/currencyPairInfo'
-import SelectList from '../components/SelectList'
+import SelectList from '../components/pairs/SelectList'
 import OpenLongPosition from '../components/positions/OpenLongPosition'
 import OpenShortPosition from '../components/positions/OpenShortPosition'
 

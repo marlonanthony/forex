@@ -4,10 +4,11 @@ import { Redirect } from 'react-router-dom'
 
 import { CURRENCY_PAIR_INFO } from '../graphql/queries/currencyPairInfo'
 import ClosePosition from '../components/positions/ClosePosition'
-import PairDetails from '../components/PairDetails'
+import PairDetails from '../components/pairs/PairDetails'
 
-const Pair = props => {
+export default function Pair(props) {
   if(!props.location.state) return <Redirect to='/login' />
+  if(!props.location.state.me || !props.location.state.pair) return <Redirect to='/login' />
   else {
     const {createdAt, lotSize, openedAt, pair, position, id } = props.location.state.pair,
           { bankroll, name } = props.location.state.me,
@@ -18,6 +19,7 @@ const Pair = props => {
         {({ data, loading, error, refetch }) => {
           if(loading) return <p>Loading...</p>
           if(error) return <p>{ error.message }</p>
+          
           const { bidPrice, lastRefreshed, askPrice } = data.currencyPairInfo,
                 pipDifLong = (bidPrice - openedAt).toFixed(4),
                 pipDifShort = (openedAt - askPrice).toFixed(4),
@@ -61,5 +63,3 @@ const Pair = props => {
     )
   }
 }
-
-export default Pair 
