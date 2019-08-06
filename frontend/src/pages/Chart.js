@@ -21,54 +21,52 @@ export default function Chart() {
   
 
   return (
-    <div>
-      <div className='chartData'>
-        <form onSubmit={e => {
-          e.preventDefault()
-          setFc(fromCurrency)
-          setTc(toCurrency) 
-        }}>
-          <input 
-            name='fromCurrency'
-            value={fromCurrency}
-            placeholder='From Currency'
-            onChange={e => setFromCurrency(e.target.value)}
-          />
-          <input 
-            name='toCurrency'
-            value={toCurrency}
-            placeholder='To Currency'
-            onChange={e => setToCurrency(e.target.value)}
-          />
-          <button>submit</button>
-        </form>
-        <Line data={{
-          labels,
-          datasets: [
-            {
-              label: `${fc}/${tc} Time Series FX (Monthly)`,
-              fill: true,
-              lineTension: 0.1,
-              backgroundColor: 'rgb(55, 131, 194)',
-              borderColor: 'white',
-              borderCapStyle: 'butt',
-              borderDash: [],
-              borderDashOffset: 0.0,
-              borderJoinStyle: 'miter',
-              pointBorderColor: 'white',
-              pointBackgroundColor: '#fff',
-              pointBorderWidth: 1,
-              pointHoverRadius: 5,
-              pointHoverBackgroundColor: 'white',
-              pointHoverBorderColor: 'rgba(220,220,220,1)',
-              pointHoverBorderWidth: 2,
-              pointRadius: 1,
-              pointHitRadius: 10,
-              data: chartData
-            }
-          ]
-        }} />
-      </div>
+    <div className='chartData'>
+      <form onSubmit={e => {
+        e.preventDefault()
+        setFc(fromCurrency)
+        setTc(toCurrency) 
+      }}>
+        <input 
+          name='fromCurrency'
+          value={fromCurrency}
+          placeholder='From Currency'
+          onChange={e => setFromCurrency(e.target.value)}
+        />
+        <input 
+          name='toCurrency'
+          value={toCurrency}
+          placeholder='To Currency'
+          onChange={e => setToCurrency(e.target.value)}
+        />
+        <button>submit</button>
+      </form>
+      <Line data={{
+        labels,
+        datasets: [
+          {
+            label: `${fc}/${tc} Time Series FX (Monthly)`,
+            fill: true,
+            lineTension: 0.1,
+            backgroundColor: 'rgb(55, 131, 194)',
+            borderColor: 'white',
+            borderCapStyle: 'butt',
+            borderDash: [],
+            borderDashOffset: 0.0,
+            borderJoinStyle: 'miter',
+            pointBorderColor: 'white',
+            pointBackgroundColor: '#fff',
+            pointBorderWidth: 1,
+            pointHoverRadius: 5,
+            pointHoverBackgroundColor: 'white',
+            pointHoverBorderColor: 'rgba(220,220,220,1)',
+            pointHoverBorderWidth: 2,
+            pointRadius: 1,
+            pointHitRadius: 10,
+            data: chartData
+          }
+        ]
+      }} />
     </div>
   )
 }
