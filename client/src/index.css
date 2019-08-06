@@ -42,10 +42,9 @@ button, select { cursor: pointer; }
 .modal {
   position: absolute;
   background: rgb(225,225,225);
-  border: 1px solid lightblue;
   color: black;
   width: 350px;
-  left: calc(50% - 175px);
+  left: calc(50% - 195px);
   top: 25%;
   padding: 20px;
   animation: modal .5s;
