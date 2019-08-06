@@ -23,7 +23,7 @@ const Landing = () => {
           const user = client.readQuery({ query: MEQUERY })
 
           return (
-            <main>
+            <section>
               <h2>Currency Exchange</h2>
               { user.me && <p>Available Balance { user.me.bankroll.toLocaleString()}.00</p> }
               <div>
@@ -53,7 +53,7 @@ const Landing = () => {
                   <p><span>{val}: </span>{data.currencyPairInfo[val]}</p>
                 </div>
               ))}
-            </main>
+            </section>
           )
         }
       }}

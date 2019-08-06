@@ -21,18 +21,18 @@ export default function Account(props) {
     {({ data, loading, error }) => {
       if(loading) return <p>Loading...</p>
       if(!data) return (
-        <main>
+        <section>
           <h2>{ user.data.me.name }</h2>
           <div>
             <p><span>Available Balance: </span>{ user.data.me.bankroll.toLocaleString() }.00</p>
             <AddFunds />
           </div>
-        </main>
+        </section>
       )
       if(error) return <p>{ error.message }</p>
       
       return (
-        <main>
+        <section>
           <h2>{ user.data.me.name }</h2>
           <div>
             <p><span>Available Balance: </span>{ user.data.me.bankroll.toLocaleString() }.00</p>
@@ -43,7 +43,7 @@ export default function Account(props) {
           <button onClick={() => setOpen(true)}>open</button>
           <button onClick={() => setOpen(false)}>closed</button>
           <Pairs data={ data } open={ open } user={ user } />
-        </main>
+        </section>
       )
     }}
     </Query>

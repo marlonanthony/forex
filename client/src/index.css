@@ -21,7 +21,7 @@ body {
 }
 
 a { text-decoration: none;  color: rgb(0,0,0); }
-main { padding-top: 50px; }
+main, section { padding-top: 50px; }
 span { color: var(--secondary-color); }
 p { color: var(--text-color); font-size: 14px; }
 p:hover { color: rgba(200,200,200, 0.4); }

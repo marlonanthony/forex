@@ -29,7 +29,7 @@ export default function Pair(props) {
                 date = new Date(lastRefreshed + ' UTC')
           
           return  data && (
-            <main>
+            <section>
               <h3>Pair Details</h3>
               <div>
                 <p>{ name } your available balance is { bankroll.toLocaleString() }.00</p> 
@@ -56,7 +56,7 @@ export default function Pair(props) {
                 pipDifShort={pipDifShort}
                 potentialProfitLoss={potentialProfitLoss}
               />
-            </main>
+            </section>
           )
         }}
       </Query>           

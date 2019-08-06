@@ -24,7 +24,7 @@ export default function Chart() {
   
 
   return (
-    <div className='chartData'>
+    <section className='chartData'>
       <form onSubmit={e => {
         e.preventDefault()
         setFc(fromCurrency)
@@ -70,6 +70,6 @@ export default function Chart() {
           }
         ]
       }} />
-    </div>
+    </section>
   )
 }
