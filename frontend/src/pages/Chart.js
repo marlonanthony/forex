@@ -9,12 +9,15 @@ export default function Chart() {
         [tc, setTc] = useState('USD'), 
         [fromCurrency, setFromCurrency] = useState('EUR'), 
         [toCurrency, setToCurrency] = useState('USD'),
-        { data, error, loading } = useQuery(MONTHLYTIMESERIES, {
+        { data, error, loading, refetch } = useQuery(MONTHLYTIMESERIES, {
           variables: { fc, tc }
         })
 
   if(loading) return <p>loading...</p>
-  if(error) return <p>{ error.message }</p>
+  if(error) return <button onClick={() => {
+    refetch({ fc: 'EUR', tc: 'USD' })
+    window.location.href = '/chart'
+  }}>retry</button>
   
   const labels = data && data.monthlyTimeSeries.timesArray,
         chartData = data && data.monthlyTimeSeries.valuesArray
