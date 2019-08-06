@@ -4,7 +4,6 @@ import { Mutation } from 'react-apollo'
 
 import { OPENPOSITION } from '../../graphql/mutations/openPosition'
 import { MEQUERY } from '../../graphql/queries/me'
-import { GETPAIRS } from '../../graphql/queries/getPairs';
 
 const OpenLongPosition = ({
   fc, 
@@ -21,7 +20,7 @@ const OpenLongPosition = ({
       openedAt: askPrice,
       position: 'long'
     }}
-    update={(cache) => {
+    update={cache => {
       const user = cache.readQuery({ query: MEQUERY })
       user.me.bankroll -= 100000
       cache.writeQuery({
@@ -29,16 +28,15 @@ const OpenLongPosition = ({
         data: { me: user.me }
       })
     }}
-    refetchQueries={[{ query: GETPAIRS }]}
   >
     {(openPosition, { data, loading, error }) => {
       if(loading) return <p>Loading...</p>
       if(error) return <p>{ error.message }</p>
       return openPosition && (
         <>
-          <button onClick={() => {
+          <button onClick={ async () => {
             alert('Are you sure you want to buy?')
-            openPosition()
+            await openPosition()
             setShowModal(true)
           }}>
             Buy

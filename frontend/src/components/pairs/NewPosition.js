@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function NewPositionDisplay({ state }) {
+export default function NewPosition({ state }) {
   return (
     <div>
       <h3>New Position</h3>
