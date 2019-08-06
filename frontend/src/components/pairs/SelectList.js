@@ -9,7 +9,7 @@ const SelectList = ({ fc, setFc, tc, setTc }) => (
       setTc(toCurrency)
     }}>
     <option>EUR/USD</option>
-    <option>USD/JPY</option>
+    <option>JPY/USD</option>
     <option>GBP/USD</option>
     <option>AUD/USD</option>
     <option>USD/CHF</option>
