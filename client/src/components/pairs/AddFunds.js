@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useMutation } from 'react-apollo-hooks'
+import { useMutation } from 'react-apollo'
 
 import { ADDFUNDS } from '../../graphql/mutations/addFunds'
 
