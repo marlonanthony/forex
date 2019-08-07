@@ -1,52 +1,49 @@
 import React, { useState } from 'react'
-import { Mutation } from 'react-apollo'
+import { useMutation } from 'react-apollo'
 
 import { MEQUERY } from '../../graphql/queries/me'
 import { LOGINMUTATION } from '../../graphql/mutations/login'
 
 export default function Login(props) {
   const [email, setEmail] = useState(''),
-        [password, setPassword] = useState('')
+        [password, setPassword] = useState(''),
+        [login, { error }] = useMutation(LOGINMUTATION, {
+          update: (cache, { data }) => {
+            if(!data || !data.login) return 
+            cache.reset()
+            cache.writeQuery({
+              query: MEQUERY,
+              data: { me: data.login }
+            })
+          }
+        })
 
   return (
-    <Mutation 
-      mutation={LOGINMUTATION}
-      update={(cache, { data }) => {
-        if(!data || !data.login) return 
-        cache.writeQuery({
-          query: MEQUERY,
-          data: { me: data.login }
-        })
+    <div className='login'>
+      <form onSubmit={ async e => {
+        e.preventDefault()
+        await login({ variables: { email, password } })
+        props.history.push('/') 
       }}>
-      {(login, { client, error }) => ( 
-        <div className='login'>
-          <form onSubmit={ async e => {
-            e.preventDefault()
-            client.clearStore() 
-            await login({ variables: { email, password } })
-            props.history.push('/') 
-          }}>
-            <h2>Login</h2>
-            <input
-              required
-              name='email'
-              type='email'
-              value={email}
-              onChange={e => setEmail(e.target.value)}
-              placeholder='Enter your email'
-            />
-            <input
-              required
-              type='password'
-              value={password}
-              onChange={e => setPassword(e.target.value)}
-              placeholder='Enter your password'
-            />
-            { error && <p>{error.message}</p> }
-            <button type='submit'>Login</button>
-          </form>
-        </div>
-      )}
-    </Mutation>
+        <h2>Login</h2>
+        <input
+          required
+          name='email'
+          type='email'
+          value={email}
+          onChange={e => setEmail(e.target.value)}
+          placeholder='Enter your email'
+        />
+        <input
+          required
+          type='password'
+          value={password}
+          onChange={e => setPassword(e.target.value)}
+          placeholder='Enter your password'
+        />
+        { error && <p>{ error.message }</p> }
+        <button type='submit'>Login</button>
+      </form>
+    </div>
   )
 }
