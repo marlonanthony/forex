@@ -9,7 +9,9 @@ import { GETPAIRS } from '../../graphql/queries/getPairs'
 const OpenShortPosition = ({
   fc,
   tc,
+  pairData,
   bidPrice,
+  setBidPrice,
   showModal,
   setShowModal
 }) => {
@@ -36,6 +38,7 @@ const OpenShortPosition = ({
   return openPosition && (
     <>
       <button onClick={ async () => {
+        await setBidPrice(+pairData.currencyPairInfo.bidPrice)
         alert('Are you sure you want to sell short?')
         await openPosition()
         setShowModal(true) 

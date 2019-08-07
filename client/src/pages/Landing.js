@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Query } from 'react-apollo'
+import { useQuery } from 'react-apollo'
 
 import { MEQUERY } from '../graphql/queries/me'
 import { CURRENCY_PAIR_INFO } from '../graphql/queries/currencyPairInfo'
@@ -12,53 +12,50 @@ const Landing = () => {
         [tc, setTc] = useState('USD'),
         [askPrice, setAskPrice] = useState(0),
         [bidPrice, setBidPrice] = useState(0),
-        [showModal, setShowModal] = useState(false)
-  
-  return (
-    <Query query={CURRENCY_PAIR_INFO} variables={{ fc, tc }}>
-      {({ data, loading, error, refetch, client }) => {
-        if(loading) return <p>Loading...</p>
-        if(error) return <button onClick={() => refetch()}>Retry</button>
-        if(data) { 
-          const user = client.readQuery({ query: MEQUERY })
-
-          return (
-            <section>
-              <h2>Currency Exchange</h2>
-              { user.me && <p>Available Balance { user.me.bankroll.toLocaleString()}.00</p> }
-              <div>
-                <SelectList fc={fc} tc={tc} setFc={setFc} setTc={setTc} />
-                <button onClick={() => refetch()}>Refresh</button>
-                { setAskPrice(+data.currencyPairInfo.askPrice) }
-                { setBidPrice(+data.currencyPairInfo.bidPrice) }
-                { user.me && (
-                  <OpenLongPosition
-                    fc={fc}
-                    tc={tc}
-                    askPrice={askPrice}
-                    showModal={showModal}
-                    setShowModal={setShowModal}
-                />)}
-                { user.me && (
-                  <OpenShortPosition
-                    fc={fc}
-                    tc={tc}
-                    bidPrice={bidPrice}
-                    showModal={showModal}
-                    setShowModal={setShowModal}
-                />)}
-              </div>
-              { data.currencyPairInfo && Object.keys(data.currencyPairInfo).map(val => (
-                <div key={val} className='data'>
-                  <p><span>{val}: </span>{data.currencyPairInfo[val]}</p>
-                </div>
-              ))}
-            </section>
-          )
-        }
-      }}
-    </Query>
-  )
+        [showModal, setShowModal] = useState(false),
+        user = useQuery(MEQUERY),
+        { data, loading, error, refetch } = useQuery(CURRENCY_PAIR_INFO, {
+          variables: { fc, tc }
+        })
+  if(loading) return <p>Loading...</p>
+  if(error) return <button onClick={() => refetch()}>Retry</button>
+  if(data) { 
+    return (
+      <section>
+        <h2>Currency Exchange</h2>
+        { user.data.me && <p>Available Balance { user.data.me.bankroll.toLocaleString()}.00</p> }
+        <div>
+          <SelectList fc={fc} tc={tc} setFc={setFc} setTc={setTc} />
+          <button onClick={() => refetch()}>Refresh</button>
+          { user.data.me && (
+            <OpenLongPosition
+              fc={fc}
+              tc={tc}
+              pairData={data}
+              askPrice={askPrice}
+              setAskPrice={setAskPrice}
+              showModal={showModal}
+              setShowModal={setShowModal}
+          />)}
+          { user.data.me && (
+            <OpenShortPosition
+              fc={fc}
+              tc={tc}
+              pairData={data}
+              bidPrice={bidPrice}
+              setBidPrice={setBidPrice}
+              showModal={showModal}
+              setShowModal={setShowModal}
+          />)}
+        </div>
+        { data.currencyPairInfo && Object.keys(data.currencyPairInfo).map(val => (
+          <div key={val} className='data'>
+            <p><span>{val}: </span>{data.currencyPairInfo[val]}</p>
+          </div>
+        ))}
+      </section>
+    )
+  }
 }
 
 export default Landing
