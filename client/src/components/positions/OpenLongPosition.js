@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { useMutation } from 'react-apollo'
+import { useMutation } from '@apollo/react-hooks'
 
 import { OPENPOSITION } from '../../graphql/mutations/openPosition'
 import { MEQUERY } from '../../graphql/queries/me'

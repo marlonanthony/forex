@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Line } from 'react-chartjs-2'
-import { useQuery } from 'react-apollo'
+import { useQuery } from '@apollo/react-hooks'
 
 import { MONTHLYTIMESERIES } from '../graphql/queries/monthlyTimeSeries'
 

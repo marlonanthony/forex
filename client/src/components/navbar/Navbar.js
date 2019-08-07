@@ -1,6 +1,6 @@
 import React from 'react'
 import { NavLink, Redirect } from 'react-router-dom'
-import { useQuery } from 'react-apollo'
+import { useQuery } from '@apollo/react-hooks'
 
 import { MEQUERY } from '../../graphql/queries/me'
 import Logout from '../auth/Logout'

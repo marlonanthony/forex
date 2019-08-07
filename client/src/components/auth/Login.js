@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useMutation } from 'react-apollo'
+import { useMutation } from '@apollo/react-hooks'
 
 import { MEQUERY } from '../../graphql/queries/me'
 import { LOGINMUTATION } from '../../graphql/mutations/login'

@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useQuery } from 'react-apollo'
+import { useQuery } from '@apollo/react-hooks'
 import { Redirect } from 'react-router-dom'
 
 import { GETPAIRS } from '../graphql/queries/getPairs'
