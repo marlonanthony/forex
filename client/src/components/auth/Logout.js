@@ -16,7 +16,7 @@ const Logout = props => {
     }
   })
   
-  return <div onClick={ logout }>Logout</div>
+  return <div onClick={() => logout()}>Logout</div>
 }
 
 export default withRouter(Logout)
