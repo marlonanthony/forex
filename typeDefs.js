@@ -70,7 +70,6 @@ const typeDefs = gql`
     success: Boolean!
     message: String!
     user: User!
-    # bankroll: Int! 
   }
 `
 

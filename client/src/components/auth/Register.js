@@ -40,7 +40,7 @@ export default function Register(props) {
           placeholder='Enter your name'
         />
         { error && <p>{ error.message }</p> }
-        <button type='submit' >SignUp</button>
+        <button>SignUp</button>
       </form>
     </div>
   )

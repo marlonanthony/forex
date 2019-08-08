@@ -13,9 +13,6 @@ export default function Pair(props) {
         { data, loading, error, refetch } = useQuery(CURRENCY_PAIR_INFO, {
           variables: { fc, tc }
         })
-
-  if(!props.location.state) return <Redirect to='/login' />
-  if(!props.location.state.me || !props.location.state.pair) return <Redirect to='/login' />
   if(loading) return <p>Loading...</p>
   if(error) return <p>{ error.message }</p>
   
