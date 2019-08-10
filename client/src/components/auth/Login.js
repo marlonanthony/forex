@@ -8,6 +8,7 @@ export default function Login(props) {
   const [email, setEmail] = useState(''),
         [password, setPassword] = useState(''),
         [login, { error }] = useMutation(LOGINMUTATION, {
+          variables: { email, password },
           update: (cache, { data }) => {
             if(!data || !data.login) return 
             cache.reset()
@@ -22,7 +23,7 @@ export default function Login(props) {
     <div className='login'>
       <form onSubmit={ async e => {
         e.preventDefault()
-        await login({ variables: { email, password } })
+        await login()
         props.history.push('/') 
       }}>
         <h2>Login</h2>
