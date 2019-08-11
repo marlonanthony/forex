@@ -5,9 +5,9 @@ import { MEQUERY } from '../../graphql/queries/me'
 import { LOGINMUTATION } from '../../graphql/mutations/login'
 
 export default function Login(props) {
-  const [ email, setEmail ] = useState(''),
-        [ password, setPassword ] = useState(''),
-        [ login, { error } ] = useMutation(LOGINMUTATION, {
+  const [email, setEmail] = useState(''),
+        [password, setPassword] = useState(''),
+        [login, { error }] = useMutation(LOGINMUTATION, {
           variables: { email, password },
           update: (cache, { data }) => {
             if(!data || !data.login) return 

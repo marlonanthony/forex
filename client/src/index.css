@@ -9,9 +9,7 @@
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   margin: 0;
@@ -30,21 +28,30 @@ button, select { cursor: pointer; }
 
 /* Landing && Pair */
 
+.landing_data {
+  margin: 20px 0 20px calc(50% - 170px);
+  padding: 20px;
+  width: 300px;
+  border-radius: 20px;
+  box-shadow: 1px 1px 1px 1px var(--secondary-color), 
+    -1px -1px 1px 1px var(--secondary-color);
+}
+
 .data {
   border-bottom: 1px solid var(--secondary-color);
-  width: 350px;
-  margin-left: calc(50% - 175px);
+  width: 280px;
+  margin-left: calc(50% - 140px);
   text-align: start;
   text-transform: capitalize;
-  padding: 5px 5px 5px 0;
+  padding: 2px 2px 2px 0;
 }
 
 .modal {
   position: absolute;
   background: rgb(225,225,225);
   color: black;
-  width: 350px;
-  left: calc(50% - 195px);
+  width: 280px;
+  left: calc(50% - 160px);
   top: 25%;
   padding: 20px;
   animation: modal .5s;
@@ -79,7 +86,11 @@ button, select { cursor: pointer; }
 
 /* Chart  */
 
-.chartData {  padding-top: 50px; background: black; height: calc(100vh - 105px); }
+.chartData {  
+  padding-top: 50px; 
+  background: black; 
+  height: calc(100vh - 105px); 
+}
 .chartData form input,
 .chartData form button {
   margin: 10px;
@@ -92,7 +103,7 @@ button, select { cursor: pointer; }
 .register input {
   padding: 5px; 
   margin: 10px 0px; 
-  width: 80%;
+  width: 60%;
   max-width: 400px;
   background: var(--main-color);
   color: var(--header-text-color);

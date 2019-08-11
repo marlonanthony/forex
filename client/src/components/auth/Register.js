@@ -4,10 +4,10 @@ import { useMutation } from '@apollo/react-hooks'
 import { REGISTERMUTATION } from '../../graphql/mutations/register'
 
 export default function Register(props) {
-  const [ email, setEmail ] = useState(''),
-        [ password, setPassword ] = useState(''),
-        [ name, setName ] = useState(''),
-        [ register, { error } ] = useMutation(REGISTERMUTATION, {
+  const [email, setEmail] = useState(''),
+        [password, setPassword] = useState(''),
+        [name, setName] = useState(''),
+        [register, { error }] = useMutation(REGISTERMUTATION, {
           variables: { email, password, name }
         })
 

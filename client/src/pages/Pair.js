@@ -6,9 +6,9 @@ import ClosePosition from '../components/positions/ClosePosition'
 import PairDetails from '../components/pairs/PairDetails'
 
 export default function Pair(props) {
-  const {createdAt, lotSize, openedAt, pair, position, id } = props.location.state.pair,
+  const { createdAt, lotSize, openedAt, pair, position, id } = props.location.state.pair,
         { bankroll, name } = props.location.state.me,
-        [fc, tc] = pair.split('/'),
+        [ fc, tc ] = pair.split('/'),
         { data, loading, error, refetch } = useQuery(CURRENCY_PAIR_INFO, {
           variables: { fc, tc }
         })
