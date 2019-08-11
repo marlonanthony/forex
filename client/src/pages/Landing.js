@@ -8,11 +8,11 @@ import OpenLongPosition from '../components/positions/OpenLongPosition'
 import OpenShortPosition from '../components/positions/OpenShortPosition'
 
 const Landing = () => {
-  const [fc, setFc] = useState('EUR'),
-        [tc, setTc] = useState('USD'),
-        [askPrice, setAskPrice] = useState(0),
-        [bidPrice, setBidPrice] = useState(0),
-        [showModal, setShowModal] = useState(false),
+  const [ fc, setFc ] = useState('EUR'),
+        [ tc, setTc ] = useState('USD'),
+        [ askPrice, setAskPrice ] = useState(0),
+        [ bidPrice, setBidPrice ] = useState(0),
+        [ showModal, setShowModal ] = useState(false),
         user = useQuery(MEQUERY),
         { data, loading, error, refetch } = useQuery(CURRENCY_PAIR_INFO, {
           variables: { fc, tc }
@@ -49,8 +49,8 @@ const Landing = () => {
         />)}
       </div>
       { data.currencyPairInfo && Object.keys(data.currencyPairInfo).map(val => (
-        <div key={val} className='data'>
-          <p><span>{val}: </span>{data.currencyPairInfo[val]}</p>
+        <div key={ val } className='data'>
+          <p><span>{ val }: </span>{ data.currencyPairInfo[val] }</p>
         </div>
       ))}
     </section>

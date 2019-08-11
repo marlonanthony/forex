@@ -34,13 +34,13 @@ export default function Chart() {
           name='fromCurrency'
           value={fromCurrency}
           placeholder='From Currency'
-          onChange={e => setFromCurrency(e.target.value)}
+          onChange={e => setFromCurrency(e.target.value.toUpperCase())}
         />
         <input 
           name='toCurrency'
           value={toCurrency}
           placeholder='To Currency'
-          onChange={e => setToCurrency(e.target.value)}
+          onChange={e => setToCurrency(e.target.value.toUpperCase())}
         />
         <button>submit</button>
       </form>
