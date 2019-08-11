@@ -26,9 +26,10 @@ p:hover { color: rgba(200,200,200, 0.4); }
 h1,h2, h3, h4 { color: var(--header-text-color); }
 button, select { cursor: pointer; }
 
+
 /* Landing && Pair */
 
-.landing_data {
+.landing_pair_data {
   margin: 20px 0 20px calc(50% - 170px);
   padding: 20px;
   width: 300px;

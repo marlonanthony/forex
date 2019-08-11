@@ -17,6 +17,7 @@ const Landing = () => {
         { data, loading, error, refetch } = useQuery(CURRENCY_PAIR_INFO, {
           variables: { fc, tc }
         })
+
   if(loading) return <p>Loading...</p>
   if(error) return <button onClick={() => refetch()}>Retry</button>
   
@@ -48,7 +49,7 @@ const Landing = () => {
             setShowModal={setShowModal}
         />)}
       </div>
-      <div className='landing_data'>
+      <div className='landing_pair_data'>
         { data.currencyPairInfo && Object.keys(data.currencyPairInfo).map(val => (
           <div key={val} className='data'>
             <p><span>{val}: </span>{ data.currencyPairInfo[val] }</p>

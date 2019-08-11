@@ -12,6 +12,7 @@ export default function Pair(props) {
         { data, loading, error, refetch } = useQuery(CURRENCY_PAIR_INFO, {
           variables: { fc, tc }
         })
+
   if(loading) return <p>Loading...</p>
   if(error) return <p>{ error.message }</p>
   
@@ -25,6 +26,7 @@ export default function Pair(props) {
   
   return data && (
     <section>
+      <div className='landing_pair_data'>
       <h3>Pair Details</h3>
       <div>
         <p>{ name } your available balance is { bankroll.toLocaleString() }.00</p> 
@@ -51,6 +53,7 @@ export default function Pair(props) {
         pipDifShort={pipDifShort}
         potentialProfitLoss={potentialProfitLoss}
       />
+      </div>
     </section>
   )
 }
