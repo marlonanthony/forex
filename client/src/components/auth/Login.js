@@ -5,9 +5,9 @@ import { MEQUERY } from '../../graphql/queries/me'
 import { LOGINMUTATION } from '../../graphql/mutations/login'
 
 export default function Login(props) {
-  const [email, setEmail] = useState(''),
-        [password, setPassword] = useState(''),
-        [login, { error }] = useMutation(LOGINMUTATION, {
+  const [ email, setEmail ] = useState(''),
+        [ password, setPassword ] = useState(''),
+        [ login, { error } ] = useMutation(LOGINMUTATION, {
           variables: { email, password },
           update: (cache, { data }) => {
             if(!data || !data.login) return 
@@ -31,15 +31,15 @@ export default function Login(props) {
           required
           name='email'
           type='email'
-          value={email}
-          onChange={e => setEmail(e.target.value)}
+          value={ email }
+          onChange={ e => setEmail(e.target.value) }
           placeholder='Enter your email'
         />
         <input
           required
           type='password'
-          value={password}
-          onChange={e => setPassword(e.target.value)}
+          value={ password }
+          onChange={ e => setPassword(e.target.value) }
           placeholder='Enter your password'
         />
         { error && <p>{ error.message }</p> }

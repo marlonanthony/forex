@@ -4,16 +4,18 @@ import { useMutation } from '@apollo/react-hooks'
 import { REGISTERMUTATION } from '../../graphql/mutations/register'
 
 export default function Register(props) {
-  const [email, setEmail] = useState(''),
-        [password, setPassword] = useState(''),
-        [name, setName] = useState(''),
-        [register, { error }] = useMutation(REGISTERMUTATION)
+  const [ email, setEmail ] = useState(''),
+        [ password, setPassword ] = useState(''),
+        [ name, setName ] = useState(''),
+        [ register, { error } ] = useMutation(REGISTERMUTATION, {
+          variables: { email, password, name }
+        })
 
   return (
     <div className='register'>
       <form onSubmit={ async e => {
         e.preventDefault()
-        await register({ variables: { email, password, name } })
+        await register()
         props.history.push('/login')
       }}>
         <h2>Sign Up</h2>
