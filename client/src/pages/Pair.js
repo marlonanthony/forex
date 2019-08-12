@@ -19,40 +19,40 @@ export default function Pair(props) {
   const { bidPrice, lastRefreshed, askPrice } = data.currencyPairInfo,
         pipDifLong = (bidPrice - openedAt).toFixed(4),
         pipDifShort = (openedAt - askPrice).toFixed(4),
-        potentialProfitLoss = (position === 'long'
+        potentialProfitLoss = position === 'long'
           ? pipDifLong * lotSize
-          : pipDifShort * lotSize),
+          : pipDifShort * lotSize,
         date = new Date(lastRefreshed + ' UTC')
   
   return data && (
     <section>
       <div className='landing_pair_data'>
-      <h3>Pair Details</h3>
-      <div>
-        <p>{ name } your available balance is { bankroll.toLocaleString() }.00</p> 
+        <h3>Pair Details</h3>
         <div>
-          <button onClick={() => refetch()}>Refresh</button>
-          <ClosePosition 
-            id={id} 
-            bidPrice={bidPrice} 
-            askPrice={askPrice} 
-            position={position} 
-          />
+          <p>{ name } your available balance is { bankroll.toLocaleString() }.00</p> 
+          <div>
+            <button onClick={() => refetch()}>Refresh</button>
+            <ClosePosition 
+              id={id} 
+              bidPrice={bidPrice} 
+              askPrice={askPrice} 
+              position={position} 
+            />
+          </div>
         </div>
-      </div>
-      <PairDetails
-        pair={pair} 
-        lotSize={lotSize}
-        openedAt={openedAt}
-        position={position}
-        createdAt={createdAt}
-        askPrice={askPrice}
-        bidPrice={bidPrice}
-        lastRefreshed={date.toLocaleString()}
-        pipDifLong={pipDifLong}
-        pipDifShort={pipDifShort}
-        potentialProfitLoss={potentialProfitLoss}
-      />
+        <PairDetails
+          pair={pair} 
+          lotSize={lotSize}
+          openedAt={openedAt}
+          position={position}
+          createdAt={createdAt}
+          askPrice={askPrice}
+          bidPrice={bidPrice}
+          lastRefreshed={date.toLocaleString()}
+          pipDifLong={pipDifLong}
+          pipDifShort={pipDifShort}
+          potentialProfitLoss={potentialProfitLoss}
+        />
       </div>
     </section>
   )

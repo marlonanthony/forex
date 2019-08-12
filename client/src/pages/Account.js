@@ -14,7 +14,7 @@ export default function Account(props) {
         { data, loading, error } = useQuery(GETPAIRS)
 
   if(user.error) return <Redirect to='/login' />
-  if(!user.data || !user.data.me) return <p>A man has no name.</p>
+  if(!user.data || !user.data.me) return <p>A man has no name</p>
   if(loading) return <p>Loading...</p>
   if(!data) return (
     <section>
