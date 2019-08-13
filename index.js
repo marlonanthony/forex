@@ -25,13 +25,13 @@ const server = new ApolloServer({
   }
 })
 
+app.use(express.static('public'))
+
 app.use(session({
   secret,
   resave: false,
   saveUninitialized: false
 }))
-
-app.use(express.static('public'))
 
 app.get('*', (req, res) => {
   res.send(path.resolve(__dirname, 'public', 'index.html'))
