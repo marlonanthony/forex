@@ -18,7 +18,7 @@ const server = new ApolloServer({
   }),
   context: ({ req }) => ({ req }),
   engine: {
-    apiKey: 'service:marlonanthony-forex:DXVA9vEAh_HMLD7tK70e1Q'
+    apiKey: process.env.ENGINE_API_KEY
   }
 })
 
