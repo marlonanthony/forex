@@ -36,8 +36,13 @@ server.applyMiddleware({
   }
 })
 
+// Server static assets if in production
+// if(process.env.NODE_ENV === 'production') {
+//   app.use(express.static('client/build'))
+// }
+
 mongoose
 .connect(`mongodb+srv://marlon:${mongoPassword}@cluster0-o028g.mongodb.net/forex?retryWrites=true&w=majority`, { useNewUrlParser: true })
-.then(() => app.listen(4000, () => {
+.then(() => app.listen(process.env.PORT || 4000, () => {
   console.log(`🚀 Server ready at http://localhost:4000${server.graphqlPath}`)
 })).catch(err => console.log(err)) 
