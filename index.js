@@ -37,9 +37,9 @@ server.applyMiddleware({
 })
 
 // Server static assets if in production
-// if(process.env.NODE_ENV === 'production') {
-//   app.use(express.static('client/build'))
-// }
+if(process.env.NODE_ENV === 'production') {
+  app.use(express.static('client/build'))
+}
 
 mongoose
 .connect(`mongodb+srv://marlon:${mongoPassword}@cluster0-o028g.mongodb.net/forex?retryWrites=true&w=majority`, { useNewUrlParser: true })
