@@ -16,7 +16,10 @@ const server = new ApolloServer({
     currencyAPI: new CurrencyAPI(),
     userAPI: new UserAPI()
   }),
-  context: ({ req }) => ({ req })
+  context: ({ req }) => ({ req }),
+  engine: {
+    apiKey: 'service:marlonanthony-forex:DXVA9vEAh_HMLD7tK70e1Q'
+  }
 })
 
 app.use(session({
