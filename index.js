@@ -1,13 +1,16 @@
-const app = require('express')()
+const express = require('express')
 const { ApolloServer } = require('apollo-server-express')
 const mongoose = require('mongoose')
 const session = require('express-session')
+const path = require('path')
 
 const typeDefs = require('./typeDefs')
 const resolvers = require('./resolvers') 
 const CurrencyAPI = require('./datasources/currencies')
 const UserAPI = require('./datasources/user')
 const { mongoPassword, secret } = require('./config/keys')
+
+const app = express()
 
 const server = new ApolloServer({ 
   typeDefs,
@@ -22,15 +25,21 @@ const server = new ApolloServer({
   }
 })
 
-if(process.env.NODE_ENV === 'production') {
-  app.use(express.static('client/build'))
-}
-
 app.use(session({
   secret,
   resave: false,
   saveUninitialized: false
 }))
+
+app.use(express.static('public'))
+
+app.get('*', (req, res) => {
+  res.send(path.resolve(__dirname, 'public', 'index.html'))
+})
+
+// if(process.env.NODE_ENV === 'production') {
+//   app.use(express.static('client/build'))
+// }
 
 server.applyMiddleware({ 
   app, 
