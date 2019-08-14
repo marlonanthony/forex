@@ -1,7 +1,7 @@
 import gql from 'graphql-tag'
 
 export const ADDFUNDS = gql`
-  mutation ($amount: Int!) {
+  mutation AddFunds($amount: Int!) {
     addFunds(amount: $amount) {
       success
       message
