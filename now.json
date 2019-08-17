@@ -1,5 +1,11 @@
 {
   "version": 2,
   "builds": [{ "src": "index.js", "use": "@now/node-server" }],
-  "routes": [{ "src": "/.*", "dest": "index.js" }]
+  "routes": [{ "src": "/.*", "dest": "index.js" }],
+  "env": {
+    "ENGINE_API_KEY": "service:marlonanthony-forex:DXVA9vEAh_HMLD7tK70e1Q",
+    "alphaVantageAPIKey": "WD41TD2JDPAUOAJH",
+    "mongoPassword": "marlon123456",
+    "secret": "muahahahhaaahaahaahhaaha"
+  }
 }

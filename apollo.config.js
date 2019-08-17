@@ -1,7 +1,7 @@
 module.exports = {
   service: {
     endpoint: {
-      url: 'http://localhost:4000/graphql'
+      url: process.env.PORT || 'http://localhost:4000/graphql'
     }
   },
 }
