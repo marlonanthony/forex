@@ -16,7 +16,7 @@ const app = express()
 app.use(cors()) 
 
 app.use(session({
-  secret,
+  secret: process.env.secret,
   resave: false,
   saveUninitialized: false
 }))
@@ -53,7 +53,7 @@ server.applyMiddleware({
 
 mongoose
 .connect(
-  `mongodb+srv://marlon:${mongoPassword}@cluster0-o028g.mongodb.net/forex?retryWrites=true&w=majority`,
+  `mongodb+srv://marlon:${process.env.mongoPassword}@cluster0-o028g.mongodb.net/forex?retryWrites=true&w=majority`,
   { useNewUrlParser: true })
 .then(() => app.listen({ port: process.env.PORT || 4000 }, () => {
   console.log(`🚀 Server ready at http://localhost:4000${server.graphqlPath}`)
