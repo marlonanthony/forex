@@ -36,5 +36,6 @@
       "last 1 safari version"
     ]
   },
-  "proxy":"http://localhost:4000"
+  "proxy":"http://localhost:4000",
+  "homepage": "https://forex-thingy.herokuapp.com/"
 }
