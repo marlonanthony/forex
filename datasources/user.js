@@ -14,7 +14,7 @@ class UserAPI extends DataSource {
 
   async createNewUser({ email, password, name }) {
     try {
-      if(!isEmail.validate(email)) { throw new UserInputError('Invalide Email') }
+      if(!isEmail.validate(email)) { throw new UserInputError('Invalid Email') }
       const existingUser = await User.findOne({ email })
       if(existingUser) { throw new UserInputError('User already exists') }
       const hashedPassword = await bcrypt.hash(password, 12)
@@ -30,7 +30,7 @@ class UserAPI extends DataSource {
 
   async loginUser({ email, password }) {
     try {
-      if (!isEmail.validate(email)) { throw new UserInputError('Invalide Email') }
+      if (!isEmail.validate(email)) { throw new UserInputError('Invalid Email') }
       const user = await User.findOne({ email }) 
       if(!user) { throw new UserInputError('Email or password is incorrect!') }
       const isEqual = await bcrypt.compare(password, user.password)
