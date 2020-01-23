@@ -53,7 +53,8 @@ server.applyMiddleware({
 
 mongoose
 .connect(
-  `mongodb+srv://marlon:${mongoPassword}@cluster0-o028g.mongodb.net/forex?retryWrites=true&w=majority`,
+  // `mongodb+srv://marlon:${mongoPassword}@cluster0-o028g.mongodb.net/forex?retryWrites=true&w=majority`,
+  `mongodb://marlon:${mongoPassword}@cluster0-shard-00-00-qpcr4.mongodb.net:27017,cluster0-shard-00-01-qpcr4.mongodb.net:27017,cluster0-shard-00-02-qpcr4.mongodb.net:27017/test?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin&retryWrites=true&w=majority`,
   { useNewUrlParser: true })
 .then(() => app.listen({ port: process.env.PORT || 4000 }, () => {
   console.log(`🚀 Server ready at http://localhost:4000${server.graphqlPath}`)
